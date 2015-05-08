@@ -1,0 +1,113 @@
+<template name="hotelForm">
+    {{> navbar}}
+    <div class="container">
+        <form class="" id="addForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <select id="type" name="selector">
+                        <option value='1'>Hotel</option>
+                        <option value='2'>Osoba prywatna</option>
+                    </select>
+                </div>
+            </div>
+            <br /> {{#if selIndex}}
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="hotelName" placeholder="Nazwa hotelu" required>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="adres" placeholder="Ulica, numer domu" required>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="adres2" placeholder="Kod pocztowy, miasto" required>
+                </div>
+            </div>
+            <br />
+            <div class="row" id="0">
+                <div class="col-md-3">
+                    Rodzaj pokoju :
+                    <select id="typeRoom">
+                        <option value='1'>1 osobowe</option>
+                        <option value='2'>2 osobowe</option>
+                        <option value='3'>3 osobowe</option>
+                        <option value='4'>4 osobowe</option>
+                        <option value='5'>5 osobowe</option>
+                        <option value='6'>6 osobowe</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Cena za dobę" id="price" required>
+                </div>
+            </div>
+            <div class="row" id="row">
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary" value="Dodaj więcej" id="addRoom">
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-danger" value="Usuń" id="removeRoom" disabled>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">Opis : </p>
+                    <textarea class="form-control" rows="5" id="desc"></textarea>
+                </div>
+            </div>
+            {{else}}
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="adres_pr" placeholder="Ulica, numer domu" required>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="adres2_pr" placeholder="Kod pocztowy, miasto" required>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    Rodzaj lokum :
+                    <select id="typeRoom2">
+                        <option value='1'>1 osobowe</option>
+                        <option value='2'>2 osobowe</option>
+                        <option value='3'>3 osobowe</option>
+                        <option value='4'>4 osobowe</option>
+                        <option value='5'>5 osobowe</option>
+                        <option value='6'>6 osobowe</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Cena za dobę" id="price_pr" required>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">Opis : </p>
+                    <textarea class="form-control" rows="5" id="desc"></textarea>
+                </div>
+            </div>
+            {{/if}}
+            <br />
+            <div class="row">
+                <div class="col-md-2">
+                    <button id="clear" class="btn btn-warning">Wyczyść formularz</button>
+                </div>
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
+                    <button id="send" class="btn btn-info pull-right">Wyślij</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

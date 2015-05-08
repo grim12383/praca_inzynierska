@@ -1,0 +1,55 @@
+<template name="hotelItem">
+    {{#if whichType}}
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ nazwa }}</h3>
+                </div>
+                <div class="panel-body">
+                    <span style="padding-left:5%;">
+<b>Adres :</b> {{ adres}} {{ adres2}}
+</span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">Ilość osób w pokoju :
+                            <br /> {{#each pokoj}} {{this}}
+                            <br />{{/each}}</div>
+                        <div class="col-md-3">Cena :
+                            <br />{{#each cena}} {{this}} PLN
+                            <br />{{/each}} </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ typ }}</h3>
+                </div>
+                <div class="panel-body">
+                    <span style="padding-left:5%;">
+<b>Adres :</b> {{ adres}} {{ adres2}}
+</span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">Ilość osób w pokoju :
+                            <br /> {{#each pokoj}} {{this}}
+                            <br />{{/each}}</div>
+                        <div class="col-md-3">Cena :
+                            <br />{{#each cena}} {{this}} PLN
+                            <br />{{/each}} </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</template>

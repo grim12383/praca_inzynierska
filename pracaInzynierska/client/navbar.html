@@ -1,0 +1,43 @@
+<template name="navbar">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pasek nawigacyjny</div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="{{ pathFor 'main'}}">
+                            <input type="button" class="btn btn-info" value="Strona Główna">
+                        </a>
+                    </div>
+                    {{#if isLoggedIn}}
+                    <div class="col-md-1">
+                        <a href="{{pathFor 'hotelForm'}}">
+                            <input type="button" class="btn btn-info" value="Dodaj hotel">
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-6 "></div>
+                    <div class="col-md-2">
+                        <p>Zalogowany jako {{currentUser.emails.[0].address}}</p>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" class="btn btn-danger" id="logout" value="Wyloguj"> </div>
+                    {{else}}
+                    <div class="col-md-7 "></div>
+                    <div class="col-md-1 ">
+                        <a href="{{pathFor 'login' }} ">
+                            <input type="button" class="btn btn-info" value="Zaloguj">
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{{pathFor 'register' }}">
+                            <input type="button" class="btn btn-warning" value="Utwóż konto">
+                        </a>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
