@@ -1,0 +1,66 @@
+<template name="edit">
+    {{>navbar}}
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Edytuj ofertę</div>
+            <div class="panel-body">
+                <div class="panel-heading">Dane kontaktowe</div>
+                <div class="panel-body">
+                    {{#if type this.typ}}
+                    <label for="text">Nazwa</label>
+                    <input type="text" value="{{nazwa}}">
+                    <br /> {{/if}}
+                    <label for="text">Województwo</label>
+                    <input type="text" value="{{wojewodztwo}}">
+                    <br />
+                    <label for="text">Ulica, numer lokalu</label>
+                    <input type="text" value="{{ulica}}">
+                    <br />
+                    <label for="text">Kod pocztowy</label>
+                    <input type="text" value="{{kod}}">
+                    <label for="text">Miasto</label>
+                    <input type="text" value="{{miasto}}">
+                    <br />
+                    <label for="text">Telefon kontaktowy</label>
+                    <input type="text" value="{{telefon}}">
+                </div>
+                <div class="panel-heading">Dane o zakwaterowaniu</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">Rodzaj lokum</div>
+                        <div class="col-md-2">cena</div>
+                    </div>{{#each rooms this._id}}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" value="{{pokoj}}">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" value="{{cena}}"> </div>
+                        <div class="col-md-1">
+                            <input type="button" class="btn btn-danger" value="Usuń" id="delRoom">
+                        </div>
+                    </div>{{/each}}
+                </div>
+                <div class="panel-heading">Zdjęcia</div>
+                <div class="panel-body">
+                    {{#each images this._id}}
+                    <div class="row"> {{>imageView}}
+                        <input type="button" class="btn btn-danger" value="Usuń" id="delImage">
+                    </div>{{/each}}
+
+                </div>
+                <div class="panel-heading">Opis</div>
+                <div class="panel-body">
+                    <textarea rows="5" class="form-control" value="{{opis}}"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-warning" value="Aktualizuj" id="update">
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</template>
