@@ -1,6 +1,5 @@
 <template name="navbar">
     <div class="panel panel-default">
-        <div class="panel-heading">Pasek nawigacyjny</div>
         <div class="panel-body">
             <div class="container">
                 <div class="row">
@@ -17,12 +16,23 @@
                     </div>
 
 
-                    <div class="col-md-6 "></div>
-                    <div class="col-md-2">
-                        <p>Zalogowany jako {{currentUser.emails.[0].address}}</p>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-3">
+
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown pull-right">
+                                <p class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Zalogowany jako {{currentUser.emails.[0].address}} <span class="caret"></span></p>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a id="myOffers" href="{{pathFor 'myOffers'}}">Moje oferty</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li id="logout"><a href="/main">Wyloguj</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
                     </div>
-                    <div class="col-md-1">
-                        <input type="button" class="btn btn-danger" id="logout" value="Wyloguj"> </div>
                     {{else}}
                     <div class="col-md-7 "></div>
                     <div class="col-md-1 ">

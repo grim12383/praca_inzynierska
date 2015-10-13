@@ -13,3 +13,18 @@ Router.route('/register', function () {
 Router.route('/hotelForm', function () {
     this.render('hotelForm');
 });
+Router.route('hotelDetails', {
+    path: '/hotelDetails/:_id',
+    data: function () {
+        return Offers.findOne(this.params._id);
+    }
+});
+Router.route('edit', {
+    path: '/edit/:_id',
+    data: function () {
+        return Offers.findOne(this.params._id);
+    }
+});
+Router.route('/myOffers', function () {
+    this.render('myOffers');
+});

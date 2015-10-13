@@ -1,55 +1,88 @@
 <template name="hotelItem">
-    {{#if whichType}}
     <div class="container">
+        {{#if whichType}}
+
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ nazwa }}</h3>
                 </div>
                 <div class="panel-body">
-                    <span style="padding-left:5%;">
-<b>Adres :</b> {{ adres}} {{ adres2}}
+                    <div class="col-md-8">
+                        <span style="padding-left:5%;">
+                        <b>Adres :</b> {{ wojewodztwo}}</span>
+                        <br /><span style="padding-left:5%;">{{ ulica}}</span>
+                        <br /> <span style="padding-left:5%;">{{ kod}} {{ miasto}} 
 </span>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-3">Ilość osób w pokoju :
-                            <br /> {{#each pokoj}} {{this}}
-                            <br />{{/each}}</div>
-                        <div class="col-md-3">Cena :
-                            <br />{{#each cena}} {{this}} PLN
-                            <br />{{/each}} </div>
+                        <div class="row">
+                            <div class="col-md-3">Rodzaj lokum :</div>
+                            <div class="col-md-3">Cena :</div>
+                        </div>
+                        {{#each rooms this._id}}
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{pokoj}}
 
+                            </div>
+                            <div class="col-md-3">
+                                {{cena}} PLN
+                            </div>
+                        </div>{{/each}}
+
+                    </div>
+                    <div class="col-md-4">{{#with images this._id}}{{>ProfileimageView}}{{/with}}</div>
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{pathFor 'hotelDetails' _id=this._id}}">
+                            <input type="button" class="btn btn-warning" value="Szczegóły" id="details">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    {{else}}
-    <div class="container">
+
+        {{else}}
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ typ }}</h3>
                 </div>
                 <div class="panel-body">
-                    <span style="padding-left:5%;">
-<b>Adres :</b> {{ adres}} {{ adres2}}
+                    <div class="col-md-8">
+                        <span style="padding-left:5%;">
+                        <b>Adres :</b> {{ wojewodztwo}}</span>
+                        <br /><span style="padding-left:5%;">{{ ulica}}</span>
+                        <br /> <span style="padding-left:5%;">{{ kod}} {{ miasto}} 
 </span>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-3">Ilość osób w pokoju :
-                            <br /> {{#each pokoj}} {{this}}
-                            <br />{{/each}}</div>
-                        <div class="col-md-3">Cena :
-                            <br />{{#each cena}} {{this}} PLN
-                            <br />{{/each}} </div>
+                        <div class="row">
+                            <div class="col-md-3">Rodzaj lokum :</div>
+                            <div class="col-md-3">Cena :</div>
+                        </div>
+                        {{#each rooms this._id}}
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{pokoj}}
 
+                            </div>
+                            <div class="col-md-3">
+                                {{cena}} PLN
+                            </div>
+                        </div>{{/each}}
+
+                    </div>
+                    <div class="col-md-4">{{#with images this._id}}{{>ProfileimageView}}{{/with}}</div>
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{pathFor 'hotelDetails' _id=this._id}}">
+                            <input type="button" class="btn btn-warning" value="Szczegóły" id="details">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        {{/if}}
+
     </div>
-    {{/if}}
 </template>

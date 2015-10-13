@@ -4,5 +4,15 @@ Template.hotelItem.helpers({
             return true;
         else
             return false;
+    },
+    rooms: function (id) {
+        return Rooms.find({
+            wlasciciel: id
+        });
+    },
+    images: function (id) {
+        return Images.findOne({
+            wlasciciel: id
+        });
     }
 });

@@ -6,8 +6,23 @@
     </head>
 
     <body>
-        {{> navbar}}
 
+        {{> navbar}}
+        <div class="panel-body">
+            <input type="button" class="btn btn-primary" id="filter" value="Wybierz filtry">
+
+            <div id="filters">
+                <br />
+                <select id="region">
+                    <option value="all">Wszystkie województwa</option>{{#each getRegion}}
+                    <option value="{{wojewodztwo}}">{{wojewodztwo}}</option>{{/each}}</select>
+                <select id="city">
+                    <option value="all">Wszystkie miasta</option>
+                    {{#each getCity}}
+                    <option value="{{miasto}}">{{miasto}}</option>{{/each}}</select>
+            </div>
+
+        </div>
         <div class="jumbotron">
             {{#each getExampleHotels}} {{> hotelItem}}{{/each}}</div>
     </body>

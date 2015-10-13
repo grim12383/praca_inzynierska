@@ -1,18 +1,55 @@
-var i = 0;
+var i = 0,
+    j = 0;
+var imagesArray = [];
+var img = 0;
+var idHotelu = null;
 var s = "Hotel";
 var dep = new Deps.Dependency();
 Template.hotelForm.events({
+    'change #file': function (event, template) {
+        var files = event.target.files;
+        for (var g = 0, ln = files.length; g < ln; g++) {
+            var r = Images.insert(files[g], function (err, fileObj) {});
+            imagesArray.push(r._id);
+        }
+    },
+    'click #addImage': function () {
+        j++;
+        $('#imgrow').before('<div class="row" id=' + j + '><input type="file" id="file"></div>');
+        if (j > 0 && j < 8) {
+            $('#removeImage').removeAttr('disabled');
+        } else if (j == 8) {
+            $('#addImage').attr('disabled', 'disabled');
+        }
+    },
+    'click #removeImage': function () {
+        if (j == imagesArray.length) {
+            Images.remove({
+                _id: imagesArray[imagesArray.length - 1]
+            });
+            imagesArray.pop();
+            $('#' + j).remove();
+            j--;
+        } else {
+            $('#' + j).remove();
+            j--;
+        }
+        if (j == 0) {
+            $('#removeImage').attr('disabled', 'disabled');
+        } else if (j > 0 && j < 8) {
+            $('#addImage').removeAttr('disabled');
+        }
+    },
     'click #addRoom': function () {
-        var id = i + 1;
+        var id = i - 1;
         $('#row').before('<div class="row" id=' + id +
-            '><div class="col-md-3">Rodzaj pokoju : <select id="typeRoom"><option value="1">1 osobowy</option><option value="2">2 osobowy</option><option value="3">3 osobowy</option><option value="4">4 osobowy</option><option value="5">5 osobowy</option><option  value="6">6 osobowy</option></select></div><div class="col-md-2"><input type="text" class="form-control" placeholder="Cena za dobę" id="price" required></div></div>');
-        i++;
+            '><div class="col-md-4">Rodzaj lokum : <input type="text" id="typeRoom"></div><div class="col-md-2"><input type="text" class="form-control" placeholder="Cena za dobę" id="price" required></div></div>');
+        i--;
         $('#removeRoom').removeAttr('disabled');
-
     },
     'click #removeRoom': function () {
         $('#' + i).remove();
-        i--;
+        i++;
         if (i == 0)
             $('#removeRoom').attr('disabled', 'disabled');
     },
@@ -21,79 +58,54 @@ Template.hotelForm.events({
         for (var z = 0; z <= i; z++)
             $('#' + z).remove();
         func();
-        console.log(s);
     },
     'click #clear': function () {
         $("input[type=text], textarea").val("");
     },
     'click #send': function () {
         if (s == "Osoba prywatna") {
-            var adres = $("#adres_pr").val();
-            var adres2 = $("#adres2_pr").val();
-            var pokoj = $("#typeRoom2").val();
-            var cena = $("#price_pr").val();
-            var opis = $("#desc").val();
-            var wlasciciel = Meteor.userId();
-            Offers.insert({
-                wlasciciel: wlasciciel,
+            offerDetails = {
+                ulica: $("#adres").val(),
+                kod: $("#postcode").val(),
+                miasto: $("#city").val(),
                 typ: s,
-                adres: adres,
-                adres2: adres2,
-                opis: opis,
-                pokoj: [
-                    pokoj],
-                cena: [
-                        cena
-                    ]
-            });
-            alert("Pomyślnie dodano oferte");
+                wojewodztwo: $("#region").val(),
+                pokoj: $("#typeRoom").val(),
+                cena: $("#price").val(),
+                opis: $("#desc").val(),
+                telefon: $("#phone").val(),
+                wlasciciel: Meteor.userId()
+            }
+            hotelRooms = {
+                pokoj: $('#typeRoom').val(),
+                cena: $('#price').val()
+            }
+            Meteor.call("addPrivate", offerDetails, hotelRooms, imagesArray);
         } else {
-            var nazwa = $("#hotelName").val();
-            var adres = $("#adres").val();
-            var adres2 = $("#adres2").val();
-            var pokoj = $("#typeRoom").val();
-            var cena = $("#price").val();
-            var opis = $("#desc").val();
-            var wlasciciel = Meteor.userId();
-            Offers.insert({
-                wlasciciel: wlasciciel,
+            offerDetails = {
+                nazwa: $("#hotelName").val(),
+                ulica: $("#adres").val(),
+                kod: $("#postcode").val(),
+                miasto: $("#city").val(),
                 typ: s,
-                nazwa: nazwa,
-                adres: adres,
-                adres2: adres2,
-                opis: opis
-            });
-            var offerta = Offers.findOne({
-                adres: adres
-            });
-            var tabcena = [];
-            var tabpokoj = [];
-            for (var z = 0; z <= i; z++) {
+                wojewodztwo: $("#region").val(),
+                pokoj: $("#typeRoom").val(),
+                cena: $("#price").val(),
+                opis: $("#desc").val(),
+                telefon: $("#phone").val(),
+                wlasciciel: Meteor.userId()
+            }
+            var hotelArray = []
+            for (var z = 0; z >= i; z--) {
                 var pokoj = $('#' + z).find('#typeRoom').val();
                 var cena = $('#' + z).find('#price').val();
-                tabcena.push(cena);
-                tabpokoj.push(pokoj);
+                hotelRooms = {
+                    pokoj: pokoj,
+                    cena: cena
+                }
+                hotelArray.push(hotelRooms);
             }
-            Offers.update({
-                _id: offerta._id
-            }, {
-                $push: {
-                    pokoj: {
-                        $each: tabpokoj
-                    }
-                }
-            });
-            Offers.update({
-                _id: offerta._id
-            }, {
-
-                $push: {
-                    cena: {
-                        $each: tabcena
-                    }
-                }
-            });
-
+            Meteor.call("addHotel", offerDetails, hotelArray, imagesArray);
         }
     }
 });
