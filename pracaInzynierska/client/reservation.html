@@ -1,0 +1,47 @@
+<template name="reservation">
+    {{> navbar}}
+    <div class="container text-center">
+        <div class="row errors" style="color:red" hidden></div>
+        <h3>Dokonaj rezerwacji dla {{title}}</h3>
+        <br />
+        <form class="text-center" id="reservationForm">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 input-group">
+                    <span class="input-group-addon">Imię i nazwisko</span>
+                    <input type="text" class="form-control" id="name" style="height:40px" value="{{currentUser.profile.name}}">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 input-group">
+                    <span class="input-group-addon">Adres</span>
+                    <input type="text" class="form-control" id="address" style="height:40px" value="{{currentUser.profile.address}}">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <select id="rooms" class="form-control">
+                        <option>Wybierz pokój</option>
+                        {{#each rooms this._id}}
+
+                        <option value="{{_id}}">{{type}} {{howMany}}-osobowy lokalizacja: {{street}} {{postCode}} {{city}} </option> {{/each}}
+                    </select>
+                    {{#with roomprice this._id}}
+                    <h4>Cena wybranego pokoju: {{price}} PLN za dobę</h4>
+                    <div class="row">
+                        <div class="col-md-5 "></div>
+                        <div class="col-md-2 ">
+                            <a class="btn btn-success" href="{{pathFor 'choosedate' _id=this.roomid}}" id="date"><i class="icon-calendar"></i> Wybierz datę</a>
+                        </div>
+                    </div>{{/with}}
+                </div>
+            </div>
+            <br />
+
+        </form>
+    </div>
+</template>

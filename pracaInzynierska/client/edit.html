@@ -1,66 +1,92 @@
 <template name="edit">
     {{>navbar}}
     <div class="container">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Edytuj ofertę</div>
-            <div class="panel-body">
-                <div class="panel-heading">Dane kontaktowe</div>
-                <div class="panel-body">
-                    {{#if type this.typ}}
-                    <label for="text">Nazwa</label>
-                    <input type="text" value="{{nazwa}}">
-                    <br /> {{/if}}
-                    <label for="text">Województwo</label>
-                    <input type="text" value="{{wojewodztwo}}">
-                    <br />
-                    <label for="text">Ulica, numer lokalu</label>
-                    <input type="text" value="{{ulica}}">
-                    <br />
-                    <label for="text">Kod pocztowy</label>
-                    <input type="text" value="{{kod}}">
-                    <label for="text">Miasto</label>
-                    <input type="text" value="{{miasto}}">
-                    <br />
-                    <label for="text">Telefon kontaktowy</label>
-                    <input type="text" value="{{telefon}}">
-                </div>
-                <div class="panel-heading">Dane o zakwaterowaniu</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-4">Rodzaj lokum</div>
-                        <div class="col-md-2">cena</div>
-                    </div>{{#each rooms this._id}}
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="text" value="{{pokoj}}">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" value="{{cena}}"> </div>
-                        <div class="col-md-1">
-                            <input type="button" class="btn btn-danger" value="Usuń" id="delRoom">
-                        </div>
-                    </div>{{/each}}
-                </div>
-                <div class="panel-heading">Zdjęcia</div>
-                <div class="panel-body">
-                    {{#each images this._id}}
-                    <div class="row"> {{>imageView}}
-                        <input type="button" class="btn btn-danger" value="Usuń" id="delImage">
-                    </div>{{/each}}
 
-                </div>
-                <div class="panel-heading">Opis</div>
-                <div class="panel-body">
-                    <textarea rows="5" class="form-control" value="{{opis}}"></textarea>
-                </div>
-            </div>
+        <form class="" id="editRoom">
             <div class="row">
-                <div class="col-md-10"></div>
-                <div class="col-md-2">
-                    <input type="button" class="btn btn-warning" value="Aktualizuj" id="update">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-addon">Województwo</span>
+                    <input type="text" class="form-control" id="region" style="height:40px" value="{{region}}">
                 </div>
             </div>
             <br />
-        </div>
+            <div class="row">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-addon">Ulica, numer domu/lokalu</span>
+                    <input type="text" class="form-control" id="street" style="height:40px" value="{{street}}">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3" style="margin:0px;padding:0px">
+                    <div class="input-group">
+                        <span class="input-group-addon">Kod pocztowy</span>
+                        <input type="text" class="form-control" id="postcode" style="height:40px" value="{{postCode}}">
+                    </div>
+                </div>
+                <div class="col-md-9" style="margin-right:0px;padding-right:0px">
+                    <div class="input-group"><span class="input-group-addon">Miasto</span>
+                        <input type="text" class="form-control" id="city" style="height:40px" value="{{city}}">
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-addon">Rodzaj lokum</span>
+                    <input type="text" class="form-control" id="type" style="height:40px" value="{{type}}">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-addon">Maksymalna ilość osób</span>
+                    <input type="text" class="form-control" id="howMany" style="height:40px" value="{{howMany}}">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="input-daterange input-group" id="datepicker">
+                    <span class="input-group-addon">Obciązenie pokoju: od</span>
+                    <input type="text" class="input-sm form-control" id="start" style="height:40px" />
+                    <span class="input-group-addon">do</span>
+                    <input type="text" class="input-sm form-control" id="end" style="height:40px" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <a class="btn btn-warning pull-right" href="#" id="add"><i class="icon-plus"></i> Dodaj obciążenie pokoju</a>
+            </div>
+            <br />
+            <div class="row">
+                <div class="gallery col-md-12" id="links">{{#each images this._id}}
+
+                    <a><img src="{{this.url}}" />
+
+                    </a>
+
+                    <div class="row">
+                        <a class="btn btn-danger" href="#" id="delimg"><i class="icon-remove" id="delimg"></i> Usuń</a>
+
+                    </div>{{/each}} </div>
+            </div>
+            <br />
+            <div class="row" id="imgrow">
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" id="addImage"><i class="icon-plus"></i> Dodaj więcej zdjęć</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-danger" href="#" id="removeImage" disabled><i class="icon-trash"></i> Usuń</a>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    <h4 class="text-center">Opis : </h4></p>
+                <textarea id="desc" class="form-control" rows="5">{{{desc}}}</textarea>
+                <br />
+                <a class="btn btn-success pull-right" href="#" id="update"><i class="icon-ok"></i> Aktualizuj</a>
+            </div>
+        </form>
     </div>
 </template>

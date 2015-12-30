@@ -1,0 +1,1 @@
+Offerrooms = new Mongo.Collection("offerrooms");

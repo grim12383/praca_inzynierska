@@ -1,14 +1,12 @@
 Template.login.events({
     'click #login-button': function (e, t) {
         e.preventDefault();
-        var email = $("#login-email").val(),
-            password = $("#login-password").val();
-        console.log("cos", email, password);
-        Meteor.loginWithPassword(email, password, function (err) {
+        var username = $("#login").val(),
+            password = $("#password").val();
+        Meteor.loginWithPassword(username, password, function (err) {
             if (err)
-                alert("Błąd");
+                $(".errors").slideDown().text("Błędny login lub hasło");
             else {
-                alert("Zalogowano pomyślnie");
                 Router.go("main");
             }
         });

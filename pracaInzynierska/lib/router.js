@@ -13,8 +13,25 @@ Router.route('/register', function () {
 Router.route('/hotelForm', function () {
     this.render('hotelForm');
 });
-Router.route('hotelDetails', {
-    path: '/hotelDetails/:_id',
+Router.route('roomDetails', {
+    path: '/roomDetails/:_id',
+    data: function () {
+        return Rooms.findOne({
+            _id: this.params._id
+        });
+    }
+});
+Router.route('offerDetails', {
+    path: '/offerDetails/:_id',
+    data: function () {
+        return Offers.findOne(this.params._id);
+    }
+});
+Router.route('/myOffers', function () {
+    this.render('myOffers');
+});
+Router.route('editOffer', {
+    path: '/editOffer/:_id',
     data: function () {
         return Offers.findOne(this.params._id);
     }
@@ -22,9 +39,23 @@ Router.route('hotelDetails', {
 Router.route('edit', {
     path: '/edit/:_id',
     data: function () {
+        return Rooms.findOne(this.params._id);
+    }
+});
+Router.route('reservation', {
+    path: '/reservation/:_id',
+    data: function () {
         return Offers.findOne(this.params._id);
     }
 });
-Router.route('/myOffers', function () {
-    this.render('myOffers');
+Router.route('/roomForm', function () {
+    this.render('roomForm');
+});
+Router.route('choosedate', {
+    path: '/choosedate/:_id',
+    data: function () {
+        return Rooms.findOne({
+            _id: this.params._id
+        });
+    }
 });

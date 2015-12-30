@@ -1,18 +1,18 @@
 Template.hotelItem.helpers({
-    whichType: function () {
-        if (this.typ == "Hotel")
-            return true;
-        else
-            return false;
-    },
     rooms: function (id) {
-        return Rooms.find({
-            wlasciciel: id
+        return Offerrooms.find({
+            owner: id
         });
     },
-    images: function (id) {
-        return Images.findOne({
-            wlasciciel: id
+    roomdetails: function (id) {
+        return Rooms.find({
+            _id: id
         });
+    },
+    image: function (id) {
+        var img = Images.find({
+            owner: id
+        }).fetch();
+        return img[0];
     }
 });

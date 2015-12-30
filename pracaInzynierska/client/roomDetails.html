@@ -1,0 +1,76 @@
+<template name="roomDetails">
+    {{> navbar}}
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body next"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left prev">
+                            Poprzedni
+                        </button>
+                        <button type="button" class="btn btn-primary next">
+                            Następny
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{type}} {{howMany}}-osobowy</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span style="padding-left:5%;">
+                        <h4>Dane adresowe :</h4> {{region}}</span>
+                            <br /><span style="padding-left:5%;">{{street}}</span>
+                            <br /> <span style="padding-left:5%;">{{postCode}} {{city}} 
+</span>
+                            <br/>
+
+                        </div>
+                        <div class="gallery col-md-6" id="links">{{#each images this._id}}
+
+                            <a href="{{this.url}}" data-gallery="{{this.owner}}"><img src="{{this.url}}"></a>
+
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{{desc}}}
+                        </div>
+                        <div class="col-md-6 calendar">
+                            <h3>Obciążenie</h3></div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            {{#if isOwner}}
+            <a href="{{pathFor 'edit' id=this_id}}">
+                <a class="btn btn-warning" href="{{pathFor 'edit' id=this_id}}"><i class="icon-pencil"></i> Edytuj</a>
+            </a>
+            <a class="btn btn-danger" href="{{pathFor 'main'}}" id="delroom"><i class="icon-trash"></i> Usuń</a>{{/if}}
+        </div>
+    </div>
+</template>

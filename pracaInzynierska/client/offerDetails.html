@@ -1,0 +1,43 @@
+<template name="offerDetails">
+    {{> navbar}}
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ title }}</h3>
+                </div>
+                <div class="panel-body">
+                    <dicv class="row">
+                        <div class="col-md-12">
+                            {{{desc}}}
+                        </div>
+                    </dicv>
+                    <div class="col-md-12">
+                        <div class="row">
+                            {{#each rooms this._id}}
+                            <div class="col-md-12">
+                                <br />{{#each roomdetails this.roomid}}
+                                <div class="pannel-heading">
+                                    <h3>{{type}} {{howMany}}-osobowy  <a class="btn btn-info" href="{{pathFor 'roomDetails' id=this._id}}"><i class="icon-info-sign icon-white"></i> Szczegóły</a>
+                                </h3>
+
+                                </div>
+                                {{/each}} Cena za dobę : {{price}} PLN
+                                <br/>
+                                <br />
+
+                            </div>
+                            {{/each}}</div>
+
+                    </div>
+                </div>
+            </div>
+            {{#if isOwner}}
+            <a class="btn btn-warning" href="{{pathFor 'editOffer' id=this_id}}"><i class="icon-pencil"></i> Edytuj</a>
+            <a class="btn btn-danger" href="{{pathFor 'main'}}" id="deloffer"><i class="icon-trash"></i> Usuń</a> {{/if}}
+            <a class="btn btn-success pull-right" href="{{pathFor 'reservation' id=this._id}}" id="reserve"><i class="icon-ok icon-white"></i> Dokonaj rezerwacji
+            </a>
+
+        </div>
+    </div>
+</template>

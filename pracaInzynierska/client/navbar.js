@@ -4,7 +4,25 @@ Template.navbar.helpers({
             return true;
         else
             return false;
-    }
+    },
+    haveRoom: function () {
+        var o = Rooms.find({
+            owner: Meteor.userId()
+        }).fetch();
+        if (o.length == 0)
+            return false;
+        else if (o.length > 0)
+            return true;
+    },
+    haveOffer: function () {
+        var o = Rooms.find({
+            owner: Meteor.userId()
+        }).fetch();
+        if (o.length == 0)
+            return false;
+        else if (o.length > 0)
+            return true;
+    },
 });
 Template.navbar.events({
     'click #logout': function () {

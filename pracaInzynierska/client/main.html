@@ -9,21 +9,22 @@
 
         {{> navbar}}
         <div class="panel-body">
-            <input type="button" class="btn btn-primary" id="filter" value="Wybierz filtry">
+            <a class="btn btn-primary" href="#" id="filter"><i class="icon-filter icon-white"></i> Wybierz filtry</a>
 
-            <div id="filters">
+            <div id="filters" hidden="true">
                 <br />
                 <select id="region">
                     <option value="all">Wszystkie województwa</option>{{#each getRegion}}
-                    <option value="{{wojewodztwo}}">{{wojewodztwo}}</option>{{/each}}</select>
+                    <option value="{{wojewodztwo}}">{{region}}</option>{{/each}}</select>
                 <select id="city">
                     <option value="all">Wszystkie miasta</option>
                     {{#each getCity}}
-                    <option value="{{miasto}}">{{miasto}}</option>{{/each}}</select>
+                    <option value="{{miasto}}">{{city}}</option>{{/each}}</select>
+                Liczba osób:
+                <input type="number" id="howMany" style="height:30px;margin:0px" min="0" value="0" />
             </div>
-
         </div>
-        <div class="jumbotron">
-            {{#each getExampleHotels}} {{> hotelItem}}{{/each}}</div>
+        <div class="container">
+            {{#each getActualHotels}} {{> hotelItem}}{{/each}}</div>
     </body>
 </template>
