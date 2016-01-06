@@ -1,5 +1,15 @@
-var region, city, howMany;
+var region, city, howMany, date;
 var dep = new Deps.Dependency();
+Template.main.onRendered(
+    function () {
+        $('.calendar').datepicker({
+            autoclose: "true",
+            startDate: "today",
+            format: "dd-mm-yyyy",
+            language: "pl"
+        });
+    }
+);
 Template.main.events({
     'click #filter': function () {
         $("#filters").toggle();
@@ -16,6 +26,10 @@ Template.main.events({
     'change #howMany': function () {
         howMany = $('#howMany').val();
         func();
+    },
+    'change #arrive': function () {
+        date = $('#arrive').val();
+        func();
     }
 });
 Template.main.helpers({
@@ -26,18 +40,20 @@ Template.main.helpers({
         var actualOffers = [];
         for (var i = 0; i < offers.length; i++) {
             var stDate = offers[i].startDate;
-            var startDay = stDate.substring(0, 2);
-            var startMonth = stDate.substring(3, 5);
-            var startYear = stDate.substring(6, 11);
-            var startDateFinal = new Date(startYear, startMonth - 1, startDay);
+
             var endDate = offers[i].endDate;
-            var endDay = endDate.substring(0, 2);
-            var endMonth = endDate.substring(3, 5);
-            var endYear = endDate.substring(6, 11);
-            var endDateFinal = new Date(endYear, endMonth - 1, endDay);
+
             var currentDate = new Date();
-            if (currentDate >= startDateFinal && currentDate <= endDateFinal) {
+            if (currentDate >= stDate && currentDate <= endDate && (date == undefined || date == "")) {
                 actualOffers.push(offers[i]);
+            } else if (date != undefined && date != "") {
+                var DateDay = date.substring(0, 2);
+                var DateMonth = date.substring(3, 5);
+                var DateYear = date.substring(6, 11);
+                var DateFinal = new Date(DateYear, DateMonth - 1, DateDay);
+                if (DateFinal >= stDate && DateFinal <= endDate) {
+                    actualOffers.push(offers[i]);
+                }
             }
         }
         if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany == '0' || howMany == undefined)) {

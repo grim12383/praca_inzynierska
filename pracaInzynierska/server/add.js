@@ -23,7 +23,12 @@ Meteor.methods({
             profile: {
                 mail: o.mail,
                 name: o.name,
-                address: o.address
+                surname: o.surname,
+                PESEL: o.PESEL,
+                street: o.street,
+                number: o.number,
+                postCode: o.postCode,
+                city: o.city
             }
         });
     },
@@ -32,6 +37,7 @@ Meteor.methods({
         var r = Rooms.insert({
             owner: o.owner,
             street: o.street,
+            number: o.number,
             postCode: o.postCode,
             city: o.city,
             region: o.region,
@@ -49,5 +55,27 @@ Meteor.methods({
                 }
             });
         }
+    },
+    reservation: function (data, date, owner) {
+        Reservations.insert({
+            name: data.name,
+            surname: data.surname,
+            street: data.street,
+            number: data.number,
+            postCode: data.postCode,
+            city: data.city,
+            phone: data.phone,
+            PESEL: data.PESEL,
+            offer: data.id,
+            room: data.roomid,
+            start: date.start,
+            end: date.end,
+            owner: owner
+        });
+        Rooms.update(data.roomid, {
+            '$push': {
+                busy: date
+            }
+        })
     }
 });

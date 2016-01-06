@@ -63,6 +63,20 @@ Template.editOffer.onRendered(function () {
     this.autorun(function (a) {
         var data = Template.currentData(this.view);
         if (!data) return;
+        var day = data.startDate.getDate();
+        var month = data.startDate.getMonth();
+        var year = data.startDate.getFullYear();
+        var eday = data.endDate.getDate();
+        var emonth = data.endDate.getMonth();
+        var eyear = data.endDate.getFullYear();
+        if (day < 10)
+            $("#start").val('0' + day + '-' + month + 1 + '-' + year);
+        else if (day >= 10)
+            $("#start").val(day + '-' + month + 1 + '-' + year);
+        if (eday < 10)
+            $("#end").val('0' + eday + '-' + emonth + 1 + '-' + eyear);
+        else if (eday >= 10)
+            $("#end").val(eday + '-' + emonth + 1 + '-' + eyear);
         $('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').text(data.desc);
     });
 });

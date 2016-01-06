@@ -31,7 +31,8 @@ Template.roomDetails.onRendered(
                 disabledDates.push(data.busy[i]);
             $('.calendar').datepicker({
                 beforeShowDay: disableDates,
-                startDate: "today"
+                startDate: "today",
+                language: "pl"
             });
         });
         $(".gallery").justifiedGallery({

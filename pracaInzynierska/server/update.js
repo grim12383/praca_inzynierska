@@ -6,6 +6,7 @@ Meteor.methods({
             $set: {
                 region: o.region,
                 street: o.street,
+                number: o.number,
                 postCode: o.postCode,
                 city: o.city,
                 howMany: o.howMany,

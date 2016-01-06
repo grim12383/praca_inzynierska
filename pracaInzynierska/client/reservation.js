@@ -31,11 +31,28 @@ Template.reservation.events({
         var data = Template.currentData(this.view);
         resData = {
             name: $("#name").val(),
-            address: $("#address").val(),
+            surname: $("#surname").val(),
+            PESEL: $("#pesel").val(),
+            phone: $("#phone").val(),
+            street: $("#street").val(),
+            number: $("#number").val(),
+            postCode: $("#postcode").val(),
+            city: $("#city").val(),
             roomid: this.roomid,
             id: data._id
         }
-        Session.set("reservationData", resData);
+        if (resData.name == "" || resData.surname == "" || resData.phone == "" || resData.street == "" || resData.number == "" || resData.postCode == "" || resData.city == "") {
+            alert("Nie wypełniono");
+        } else {
+            console.log(this.roomid);
+            Session.set("reservationData", resData);
+            Meteor.defer(function () {
+                Router.go('/choosedate/' + resData.roomid, {
+                    _id: resData.roomid
+                });
+            });
+
+        }
     }
 });
 var func = function () {

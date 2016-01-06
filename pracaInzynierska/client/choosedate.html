@@ -1,9 +1,11 @@
 <template name="choosedate">
     {{>navbar}}
     <div class="container">
-        <h3>Twoje dane do rezerwacji:</h3> {{#with reservationData}}
-        <h4>{{name}}</h4>
-        <h4>{{address}}</h4> {{#with offer id}}
+        <h3 id="resData">Twoje dane do rezerwacji:</h3> {{#with reservationData}}
+        <h4>{{name}} {{surname}}</h4>
+        <h4>{{street}} {{number}}</h4>
+        <h4>{{postCode}} {{city}}</h4>
+        <h4>Telefon kontaktowy: {{phone}}</h4>{{#with offer id}}
         <h4>W ramach oferty: {{title}}</h4>{{/with}} {{#with room roomid}}
         <h4>Dla pokoju typu: {{type}} {{howMany}}-osobowy</h4>
         <p>Zlokalizowane w województwie: {{region}}</p>

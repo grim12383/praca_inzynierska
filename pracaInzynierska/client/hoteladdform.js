@@ -9,12 +9,22 @@ Template.hotelForm.events({
             var z = $('#' + selected[i]).val();
             prices.push(z);
         }
+        var stDate = $("#start").val();
+        var startDay = stDate.substring(0, 2);
+        var startMonth = stDate.substring(3, 5);
+        var startYear = stDate.substring(6, 11);
+        var startDateFinal = new Date(startYear, startMonth - 1, startDay);
+        var endDate = $("#end").val();
+        var endDay = endDate.substring(0, 2);
+        var endMonth = endDate.substring(3, 5);
+        var endYear = endDate.substring(6, 11);
+        var endDateFinal = new Date(endYear, endMonth - 1, endDay);
         offerdetails = {
             title: $('#title').val(),
             desc: $('#desc').val(),
             phone: $('#phone').val(),
-            startDate: $('#start').val(),
-            endDate: $('#end').val(),
+            startDate: startDateFinal,
+            endDate: endDateFinal,
             owner: Meteor.userId()
         }
         Meteor.call("addOffer", offerdetails, selected, prices);
@@ -42,6 +52,7 @@ Template.hotelForm.onRendered(function () {
         startDate: "today",
         clearBtn: true,
         language: "pl",
+        autoclose: "true",
         todayHighlight: true,
         toggleActive: true,
         format: "dd-mm-yyyy"

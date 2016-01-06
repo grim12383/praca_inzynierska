@@ -19,11 +19,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zalogowany jako {{currentUser.username}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {{#if haveRoom}}
-                            <li><a href="#">Moje pokoje</a></li>{{/if}} {{#if haveOffer}}
-                            <li><a href="#">Moje oferty</a></li>{{/if}}
+                            <li><a href="{{pathFor 'myRooms'}}">Moje pokoje</a></li>{{/if}} {{#if haveOffer}}
+                            <li><a href="{{pathFor 'myOffers'}}">Moje oferty</a></li>{{/if}} {{#if haveRes}}
+                            <li><a href="{{pathFor 'myreservations'}}">Rezerwacje</a></li>{{/if}}
+
 
                             <li role="separator" class="divider"></li>
-                            <li id="logout"><a href="/main"><span class="icon-off"></span>Wyloguj</a></li>
+                            <li id="logout"><a href="/main"><span class="icon-off"></span> Wyloguj</a></li>
                         </ul>
                     </li>
                 </ul>

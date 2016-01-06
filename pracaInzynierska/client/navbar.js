@@ -15,7 +15,7 @@ Template.navbar.helpers({
             return true;
     },
     haveOffer: function () {
-        var o = Rooms.find({
+        var o = Offers.find({
             owner: Meteor.userId()
         }).fetch();
         if (o.length == 0)
@@ -23,6 +23,15 @@ Template.navbar.helpers({
         else if (o.length > 0)
             return true;
     },
+    haveRes: function () {
+        var o = Reservations.find({
+            owner: Meteor.userId()
+        }).fetch();
+        if (o.length == 0)
+            return false;
+        else if (o.length > 0)
+            return true;
+    }
 });
 Template.navbar.events({
     'click #logout': function () {

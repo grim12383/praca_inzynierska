@@ -5,26 +5,34 @@
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     </head>
 
-    <body>
+    {{> navbar}}
+    <div class="panel-body">
+        <a class="btn btn-primary" href="#" id="filter"><i class="icon-filter icon-white"></i> Wybierz filtry</a>
 
-        {{> navbar}}
-        <div class="panel-body">
-            <a class="btn btn-primary" href="#" id="filter"><i class="icon-filter icon-white"></i> Wybierz filtry</a>
+        <div id="filters" hidden="true">
+            <br />
+            <div class="row">
+                <div class="input-group col-md-2" style="float:left;">
+                    <select id="region">
+                        <option value="all">Wszystkie województwa</option>{{#each getRegion}}
+                        <option value="{{wojewodztwo}}">{{region}}</option>{{/each}}</select>
+                </div>
+                <div class="input-group col-md-2" style="float:left;">
+                    <select id="city">
+                        <option value="all">Wszystkie miasta</option>
+                        {{#each getCity}}
+                        <option value="{{miasto}}">{{city}}</option>{{/each}}</select>
+                </div>
+                <div class="input-group col-md-3" style="float:left;"><span class="input-group-addon">Liczba osób:</span>
+                    <input type="number" id="howMany" style="height:30px;margin:0px" min="1" value="1" />
 
-            <div id="filters" hidden="true">
-                <br />
-                <select id="region">
-                    <option value="all">Wszystkie województwa</option>{{#each getRegion}}
-                    <option value="{{wojewodztwo}}">{{region}}</option>{{/each}}</select>
-                <select id="city">
-                    <option value="all">Wszystkie miasta</option>
-                    {{#each getCity}}
-                    <option value="{{miasto}}">{{city}}</option>{{/each}}</select>
-                Liczba osób:
-                <input type="number" id="howMany" style="height:30px;margin:0px" min="0" value="0" />
+                </div>
+                <div class="input-group col-md-3" style="float:left;"><span class="input-group-addon">Wybierz date przyjazdu:</span>
+                    <input type="text" class="form-control calendar" id="arrive" style="height:30px"><span class="input-group-addon"><i class="icon-calendar"></i></span>
+                </div>
             </div>
         </div>
-        <div class="container">
-            {{#each getActualHotels}} {{> hotelItem}}{{/each}}</div>
-    </body>
+    </div>
+    <div class="container">
+        {{#each getActualHotels}} {{> hotelItem}}{{/each}}</div>
 </template>

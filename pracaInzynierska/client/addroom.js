@@ -7,6 +7,7 @@ Template.roomForm.events({
     'click #send': function () {
         roomDetails = {
             street: $("#street").val(),
+            number: $("#number").val(),
             postCode: $("#postcode").val(),
             city: $("#city").val(),
             region: $("#region").val(),

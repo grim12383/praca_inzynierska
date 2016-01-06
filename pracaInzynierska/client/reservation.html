@@ -8,17 +8,66 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
-                    <span class="input-group-addon">Imię i nazwisko</span>
-                    <input type="text" class="form-control" id="name" style="height:40px" value="{{currentUser.profile.name}}">
+                    <span class="input-group-addon">Imię</span>
+                    <input type="text" class="form-control" id="name" style="height:40px" value="{{currentUser.profile.name}}" required>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
-                    <span class="input-group-addon">Adres</span>
-                    <input type="text" class="form-control" id="address" style="height:40px" value="{{currentUser.profile.address}}">
+                    <span class="input-group-addon">Nazwisko</span>
+                    <input type="text" class="form-control" id="surname" style="height:40px" value="{{currentUser.profile.surname}}" required>
                 </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 input-group">
+                    <span class="input-group-addon">Numer PESEL</span>
+                    <input type="text" class="form-control" id="pesel" style="height:40px" value="{{currentUser.profile.PESEL}}" required>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 input-group">
+                    <span class="input-group-addon">Telefon kontaktowy</span>
+                    <input type="text" class="form-control" id="phone" style="height:40px" required>
+                </div>
+            </div>
+            <br />
+            <h4>Dane adresowe</h4>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3" style="margin:0px;padding:0px">
+                    <div class="input-group">
+                        <span class="input-group-addon">Ulica</span>
+                        <input type="text" class="form-control" id="street" style="height:40px" value="{{currentUser.profile.street}}" required>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-right:0px;padding-right:0px">
+                    <div class="input-group"><span class="input-group-addon">Numer domu/lokalu</span>
+                        <input type="text" class="form-control" id="number" style="height:40px" value="{{currentUser.profile.number}}" required>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-2" style="margin:0px;padding:0px">
+                    <div class="input-group">
+                        <span class="input-group-addon">Kod pocztowy</span>
+                        <input type="text" class="form-control" id="postcode" style="height:40px" value="{{currentUser.profile.postCode}}" required>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-right:0px;padding-right:0px">
+                    <div class="input-group"><span class="input-group-addon">Miasto</span>
+                        <input type="text" class="form-control" id="city" style="height:40px" value="{{currentUser.profile.city}}" required>
+                    </div>
+                </div>
+
             </div>
             <br />
             <div class="row">
@@ -35,7 +84,7 @@
                     <div class="row">
                         <div class="col-md-5 "></div>
                         <div class="col-md-2 ">
-                            <a class="btn btn-success" href="{{pathFor 'choosedate' _id=this.roomid}}" id="date"><i class="icon-calendar"></i> Wybierz datę</a>
+                            <a class="btn btn-success" href="#" id="date"><i class="icon-calendar"></i> Wybierz datę</a>
                         </div>
                     </div>{{/with}}
                 </div>

@@ -76,6 +76,7 @@ Template.edit.events({
             id: this._id,
             region: $("#region").val(),
             street: $("#street").val(),
+            number: $("#number").val(),
             postCode: $("#postcode").val(),
             city: $("#city").val(),
             howMany: $("#howMany").val(),

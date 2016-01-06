@@ -10,3 +10,9 @@ Meteor.publish('offerrooms', function () {
 Meteor.publish('images', function () {
     return Images.find();
 });
+Meteor.publish('reservations', function () {
+    return Reservations.find();
+});
+Meteor.publish('users', function () {
+    return Meteor.users.find();
+});

@@ -3,7 +3,8 @@
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ title }}</h3>
+                    <h3 class="panel-title">{{ title }}<div class="pull-right">Oferta ważna do: {{#with date}}{{this}}{{/with}}</div></h3>
+
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">
@@ -14,7 +15,7 @@
 
                                 <div class="pannel-heading">
                                     <h4>{{type}} {{howMany}}-osobowy</h4></div>
-                                Lokalizacja: {{street}} {{postCode}} {{city}}{{/each}}
+                                Lokalizacja: {{street}} {{number}} {{postCode}} {{city}}{{/each}}
                                 <br /> Cena za dobę : {{price}} PLN </div>
 
                             <div class="col-md-3">{{#with image this.roomid}}{{>ProfileimageView}}{{/with}}

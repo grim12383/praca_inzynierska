@@ -1,17 +1,21 @@
-Router.route('/', function () {
-    this.render('home');
+Router.route('main', {
+    path: '/'
 });
-Router.route('/main', function () {
-    this.render('main');
+Router.route('login', {
+    path: '/login'
 });
-Router.route('/login', function () {
-    this.render('login');
+Router.route('register', {
+    path: '/register'
 });
-Router.route('/register', function () {
-    this.render('register');
-});
-Router.route('/hotelForm', function () {
-    this.render('hotelForm');
+Router.route('hotelForm', {
+    path: '/hotelForm',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
 });
 Router.route('roomDetails', {
     path: '/roomDetails/:_id',
@@ -27,17 +31,60 @@ Router.route('offerDetails', {
         return Offers.findOne(this.params._id);
     }
 });
-Router.route('/myOffers', function () {
-    this.render('myOffers');
+Router.route('myOffers', {
+    path: '/myOffers',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
+});
+Router.route('myRooms', {
+    path: '/myRooms',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
+});
+Router.route('myreservations', {
+    path: '/myreservations',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
 });
 Router.route('editOffer', {
     path: '/editOffer/:_id',
+    before: function () {
+        var data = Offers.findOne(this.params._id);
+        if (Meteor.userId() != data.owner) {
+            this.redirect('main');
+        } else {
+            this.next();
+        }
+    },
     data: function () {
         return Offers.findOne(this.params._id);
     }
 });
 Router.route('edit', {
     path: '/edit/:_id',
+    before: function () {
+        var data = Rooms.findOne(this.params._id);
+        if (Meteor.userId() != data.owner) {
+            this.redirect('main');
+        } else {
+            this.next();
+        }
+    },
     data: function () {
         return Rooms.findOne(this.params._id);
     }
@@ -48,14 +95,19 @@ Router.route('reservation', {
         return Offers.findOne(this.params._id);
     }
 });
-Router.route('/roomForm', function () {
-    this.render('roomForm');
+Router.route('roomForm', {
+    path: '/roomForm',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
 });
 Router.route('choosedate', {
     path: '/choosedate/:_id',
     data: function () {
-        return Rooms.findOne({
-            _id: this.params._id
-        });
+        return Rooms.findOne(this.params._id);
     }
 });
