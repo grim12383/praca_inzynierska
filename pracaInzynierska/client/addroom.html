@@ -1,6 +1,7 @@
 <template name="roomForm">
     {{> navbar}}
     <div class="container">
+        <div class="errors"></div>
         <form class="" id="addRoom">
             <div class="row">
                 <div class="col-md-12 input-group">
@@ -75,7 +76,7 @@
                 </div>
                 <div class="col-md-8"></div>
                 <div class="col-md-2">
-                    <a class="btn btn-info" href="{{pathFor 'main'}}" id="send"><i class="icon-ok icon-white"></i> Wyślij</a>
+                    <a class="btn btn-info" href="#" id="send"><i class="icon-ok icon-white"></i> Wyślij</a>
 
                 </div>
             </div>

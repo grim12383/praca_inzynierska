@@ -27,8 +27,17 @@ Template.hotelForm.events({
             endDate: endDateFinal,
             owner: Meteor.userId()
         }
-        Meteor.call("addOffer", offerdetails, selected, prices);
-        Router.go("main");
+        if (offerdetails.title == "" || offerdetails.desc == "" || offerdetails.phone == "" || offerdetails.startDate == "" || offerdetails.endDate == "" || selected.length == 0) {
+            $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
+        } else {
+            Meteor.call("addOffer", offerdetails, selected, prices, function (err, res) {
+                if (!err) {
+                    Router.go('main');
+                } else {
+                    $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas dodawania oferty, spróbuj ponownie!<strong></p></div>");
+                }
+            });
+        }
     },
     'click #clear': function () {
         $("input[type=text]").val("");

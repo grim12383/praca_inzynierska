@@ -25,6 +25,8 @@ Template.main.events({
     },
     'change #howMany': function () {
         howMany = $('#howMany').val();
+        howMany = parseInt(howMany);
+        console.log(howMany);
         func();
     },
     'change #arrive': function () {
@@ -56,9 +58,9 @@ Template.main.helpers({
                 }
             }
         }
-        if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany == '0' || howMany == undefined)) {
+        if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany == 1 || howMany == undefined)) {
             return actualOffers;
-        } else if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany != '0' || howMany != undefined)) {
+        } else if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany != 1 || howMany != undefined)) {
             var actualOffers_id = [];
             var actualOffersHowMany = [];
             for (var i = 0; i < actualOffers.length; i++) {
@@ -73,7 +75,7 @@ Template.main.helpers({
                 var roomHowMany = Rooms.findOne({
                     _id: actOfferrooms[i].roomid
                 });
-                if (roomHowMany.howMany >= howMany) {
+                if (parseInt(roomHowMany.howMany) >= howMany) {
                     var roomOffer = Offers.findOne({
                         _id: actOfferrooms[i].owner
                     });
@@ -87,7 +89,7 @@ Template.main.helpers({
                 }
             }
             return actualOffersHowMany;
-        } else if (region != "all" && (city == "all" || city == undefined) && (howMany == '0' || howMany == undefined)) {
+        } else if (region != "all" && (city == "all" || city == undefined) && (howMany == 1 || howMany == undefined)) {
             var actualOffers_id = [];
             var actualRegion = [];
             for (var i = 0; i < actualOffers.length; i++)
@@ -117,7 +119,7 @@ Template.main.helpers({
 
             }
             return actualRegion;
-        } else if (region != "all" && (city == "all" || city == undefined) && (howMany != '0' || howMany != undefined)) {
+        } else if (region != "all" && (city == "all" || city == undefined) && (howMany != 1 || howMany != undefined)) {
             var actualOffers_id = [];
             var actualRegion = [];
             for (var i = 0; i < actualOffers.length; i++)
@@ -131,7 +133,7 @@ Template.main.helpers({
                 var roomRegion = Rooms.findOne({
                     _id: roomsRegion[i].roomid
                 });
-                if (roomRegion.region == region && roomRegion.howMany >= howMany) {
+                if (roomRegion.region == region && parseInt(roomRegion.howMany) >= howMany) {
                     var roomOffer = Offers.findOne({
                         _id: roomsRegion[i].owner
                     });
@@ -147,7 +149,7 @@ Template.main.helpers({
 
             }
             return actualRegion;
-        } else if ((region != undefined && region != "all") && (city != "all" && city != undefined) && (howMany == '0' || howMany == undefined)) {
+        } else if ((region != undefined && region != "all") && (city != "all" && city != undefined) && (howMany == 1 || howMany == undefined)) {
             var actualCities = [];
             var actualRegion = [];
             var actualOffers_id = [];
@@ -176,7 +178,7 @@ Template.main.helpers({
             }
 
             return actualCities;
-        } else if ((region != undefined && region != "all") && (city != "all" && city != undefined) && (howMany != '0' || howMany != undefined)) {
+        } else if ((region != undefined && region != "all") && (city != "all" && city != undefined) && (howMany != 1 || howMany != undefined)) {
             var actualCities = [];
             var actualRegion = [];
             var actualOffers_id = [];
@@ -191,7 +193,7 @@ Template.main.helpers({
                 var roomRegionCity = Rooms.findOne({
                     _id: roomsRegion[i].roomid
                 });
-                if (roomRegionCity.region == region && roomRegionCity.city == city && roomRegionCity.howMany >= howMany) {
+                if (roomRegionCity.region == region && roomRegionCity.city == city && parseInt(roomRegionCity.howMany) >= howMany) {
                     var roomOffer = Offers.findOne({
                         _id: roomsRegion[i].owner
                     })
