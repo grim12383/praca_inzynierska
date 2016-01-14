@@ -5,34 +5,38 @@
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     </head>
 
-    {{> navbar}}
-    <div class="panel-body">
-        <a class="btn btn-primary" href="#" id="filter"><i class="icon-filter icon-white"></i> Wybierz filtry</a>
 
-        <div id="filters" hidden="true">
+    {{> navbar}}
+
+    <div class="container">
+        <div id="filters">
             <br />
-            <div class="row">
-                <div class="input-group col-md-2" style="float:left;">
+            <div class="row" style="margin:0px;margin-right:-30px">
+                <div class="col-md-3 select-style" style="float:left;">
                     <select id="region">
                         <option value="all">Wszystkie województwa</option>{{#each getRegion}}
                         <option value="{{wojewodztwo}}">{{region}}</option>{{/each}}</select>
                 </div>
-                <div class="input-group col-md-2" style="float:left;">
-                    <select id="city">
+                <div class="col-md-3 select-style" style="float:left;">
+                    <select id="city" disabled>
                         <option value="all">Wszystkie miasta</option>
                         {{#each getCity}}
                         <option value="{{miasto}}">{{city}}</option>{{/each}}</select>
                 </div>
-                <div class="input-group col-md-3" style="float:left;"><span class="input-group-addon">Liczba osób:</span>
-                    <input type="number" id="howMany" style="height:30px;margin:0px" min="1" value="1" />
+                <div class="col-md-2 input-group" style="float:left;"><span class="input-group-addon ">Liczba osób:</span>
+                    <input type="number" id="howMany" style="height:32px;width:100%;margin:0px;-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px;border-top-right-radius:5px;border-bottom-right-radius:5px;" min="1" value="1" />
 
                 </div>
-                <div class="input-group col-md-3" style="float:left;"><span class="input-group-addon">Wybierz date przyjazdu:</span>
-                    <input type="text" class="form-control calendar" id="arrive" style="height:30px"><span class="input-group-addon"><i class="icon-calendar"></i></span>
+
+                <div class="input-daterange input-group calendar col-md-4" style="float:left;">
+                    <span class="input-group-addon" style="border-left:1px solid #ccc">Czas pobytu od</span>
+                    <input type="text" class="input-sm form-control" id="start" style="height:32px" />
+                    <span class="input-group-addon">do</span>
+                    <input type="text" class="input-sm form-control" id="end" style="height:32px" />
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        {{#each getActualHotels}} {{> hotelItem}}{{/each}}</div>
+        <br /> {{#each getActualHotels}} {{> hotelItem}}{{/each}}</div>
 </template>

@@ -17,7 +17,7 @@ Template.register.events({
         var email = data.mail.trim(" ");
         var trimmedLogin = data.login.trim(" ");
         if (data.login == "" || data.mail == "" || data.name == "" || data.surname == "" || data.street == "" || data.number == "" || data.postCode == "" || data.city == "") {
-            $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Proszę uzupełnić wszystkie wymagane pola!<strong></p></div>");
+            $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Proszę uzupełnić wszystkie wymagane pola!<strong></p></div>");
         } else {
             if (trimmedLogin.length != 0) {
                 if (isValidEmailAddress(data.mail) && email.length != 0) {
@@ -26,14 +26,14 @@ Template.register.events({
                             if (!err) {
                                 Router.go("login");
                             } else {
-                                $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Podany login już istnieje w bazie<strong></p></div>");
+                                $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Podany login już istnieje w bazie<strong></p></div>");
                             }
                         });
                     } else {
-                        $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Hasła nie są takie same, bądź są za krótkie<strong></p></div>");
+                        $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Hasła nie są takie same, bądź są za krótkie<strong></p></div>");
                     }
                 } else {
-                    $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Niepoprawny format maila<strong></p></div>");
+                    $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Niepoprawny format maila<strong></p></div>");
                 }
             }
             return false;

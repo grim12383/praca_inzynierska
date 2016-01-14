@@ -17,6 +17,16 @@ Router.route('hotelForm', {
         }
     }
 });
+Router.route('editprofile', {
+    path: '/editprofile',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
+});
 Router.route('roomDetails', {
     path: '/roomDetails/:_id',
     data: function () {
@@ -92,7 +102,7 @@ Router.route('edit', {
 Router.route('reservation', {
     path: '/reservation/:_id',
     data: function () {
-        return Offers.findOne(this.params._id);
+        return Offerrooms.findOne(this.params._id);
     }
 });
 Router.route('roomForm', {
@@ -103,11 +113,5 @@ Router.route('roomForm', {
         } else {
             this.next();
         }
-    }
-});
-Router.route('choosedate', {
-    path: '/choosedate/:_id',
-    data: function () {
-        return Rooms.findOne(this.params._id);
     }
 });

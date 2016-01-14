@@ -1,4 +1,9 @@
-var region, city, howMany, date;
+var dateDiff = undefined,
+    region = undefined,
+    city = undefined,
+    howMany = 1,
+    dateSt = undefined,
+    dateEnd = undefined;
 var dep = new Deps.Dependency();
 Template.main.onRendered(
     function () {
@@ -8,12 +13,16 @@ Template.main.onRendered(
             format: "dd-mm-yyyy",
             language: "pl"
         });
+        dateDiff = undefined;
+        region = undefined;
+        city = undefined;
+        howMany = 1;
+        dateSt = undefined;
+        dateEnd = undefined;
+        delete Session.keys["filterParams"];
     }
 );
 Template.main.events({
-    'click #filter': function () {
-        $("#filters").toggle();
-    },
     'change #region': function () {
         region = $('#region option:selected').val();
         city = "all";
@@ -26,12 +35,26 @@ Template.main.events({
     'change #howMany': function () {
         howMany = $('#howMany').val();
         howMany = parseInt(howMany);
-        console.log(howMany);
         func();
     },
-    'change #arrive': function () {
-        date = $('#arrive').val();
+    'change #start': function () {
+        dateSt = $('#start').val();
         func();
+    },
+    'change #end': function () {
+        dateEnd = $('#end').val();
+        func();
+    },
+    'click #details': function () {
+        data = {
+            region: region,
+            city: city,
+            start: dateSt,
+            end: dateEnd,
+            dateDiff: dateDiff,
+            howMany: howMany
+        };
+        Session.set("filterParams", data);
     }
 });
 Template.main.helpers({
@@ -46,21 +69,28 @@ Template.main.helpers({
             var endDate = offers[i].endDate;
 
             var currentDate = new Date();
-            if (currentDate >= stDate && currentDate <= endDate && (date == undefined || date == "")) {
+            if (currentDate >= stDate && currentDate <= endDate && (dateSt == undefined || dateSt == "")) {
                 actualOffers.push(offers[i]);
-            } else if (date != undefined && date != "") {
-                var DateDay = date.substring(0, 2);
-                var DateMonth = date.substring(3, 5);
-                var DateYear = date.substring(6, 11);
+            } else if (dateSt != undefined && dateSt != "") {
+                var DateDay = dateSt.substring(0, 2);
+                var DateMonth = dateSt.substring(3, 5);
+                var DateYear = dateSt.substring(6, 11);
                 var DateFinal = new Date(DateYear, DateMonth - 1, DateDay);
-                if (DateFinal >= stDate && DateFinal <= endDate) {
+                var DateDayE = dateEnd.substring(0, 2);
+                var DateMonthE = dateEnd.substring(3, 5);
+                var DateYearE = dateEnd.substring(6, 11);
+                var DateFinalEnd = new Date(DateYearE, DateMonthE - 1, DateDayE);
+                dateDiff = Math.abs(DateFinal - DateFinalEnd) / 86400000;
+                if ((DateFinal >= stDate && DateFinal <= endDate) && (DateFinalEnd >= stDate && DateFinalEnd <= endDate)) {
                     actualOffers.push(offers[i]);
                 }
             }
         }
         if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany == 1 || howMany == undefined)) {
+            $("#city").attr("disabled", "disabled");
             return actualOffers;
         } else if ((region == undefined || region == "all") && (city == undefined || city == "all") && (howMany != 1 || howMany != undefined)) {
+            $("#city").attr("disabled", "disabled");
             var actualOffers_id = [];
             var actualOffersHowMany = [];
             for (var i = 0; i < actualOffers.length; i++) {
@@ -90,6 +120,7 @@ Template.main.helpers({
             }
             return actualOffersHowMany;
         } else if (region != "all" && (city == "all" || city == undefined) && (howMany == 1 || howMany == undefined)) {
+            $("#city").removeAttr("disabled");
             var actualOffers_id = [];
             var actualRegion = [];
             for (var i = 0; i < actualOffers.length; i++)
@@ -120,6 +151,7 @@ Template.main.helpers({
             }
             return actualRegion;
         } else if (region != "all" && (city == "all" || city == undefined) && (howMany != 1 || howMany != undefined)) {
+            $("#city").removeAttr("disabled");
             var actualOffers_id = [];
             var actualRegion = [];
             for (var i = 0; i < actualOffers.length; i++)
@@ -150,6 +182,7 @@ Template.main.helpers({
             }
             return actualRegion;
         } else if ((region != undefined && region != "all") && (city != "all" && city != undefined) && (howMany == 1 || howMany == undefined)) {
+            $("#city").removeAttr("disabled");
             var actualCities = [];
             var actualRegion = [];
             var actualOffers_id = [];
@@ -179,6 +212,7 @@ Template.main.helpers({
 
             return actualCities;
         } else if ((region != undefined && region != "all") && (city != "all" && city != undefined) && (howMany != 1 || howMany != undefined)) {
+            $("#city").removeAttr("disabled");
             var actualCities = [];
             var actualRegion = [];
             var actualOffers_id = [];

@@ -9,5 +9,14 @@ Template.myRooms.helpers({
             owner: id
         }).fetch();
         return img[0];
+    },
+    validrooms: function () {
+        var data = Rooms.find({
+            owner: Meteor.userId()
+        }).fetch();
+        if (data.length != 0)
+            return true;
+        else
+            return false;
     }
 });

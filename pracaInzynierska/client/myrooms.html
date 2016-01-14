@@ -1,7 +1,7 @@
 <template name="myRooms">
     {{>navbar}}
     <div class="container">
-        {{#each myrooms}}
+        {{#if validrooms}} {{#each myrooms}}
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -24,7 +24,6 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12" align="center">
-
                             <a class="btn btn-info" href="{{pathFor 'roomDetails' _id=this._id}}" id="details"><i class="icon-info-sign icon-white"></i> Szczegóły</a>
 
                         </div>
@@ -32,6 +31,7 @@
                 </div>
             </div>
         </div>
-        {{/each}}
+        {{/each}} {{else}}
+        <h2 class="text-center">Nie dodałeś żadnych pokoi! <a href="{{pathFor 'roomForm'}}">Dodaj</a></h2> {{/if}}
     </div>
 </template>

@@ -10,22 +10,23 @@ Template.roomForm.events({
             number: $("#number").val(),
             postCode: $("#postcode").val(),
             city: $("#city").val(),
-            region: $("#region").val(),
+            region: $('#region option:selected').val(),
             howMany: $("#howMany").val(),
             desc: $("#desc").val(),
             type: $("#type").val(),
             owner: Meteor.userId()
         }
-        if (roomDetails.city == "" || roomDetails.number == "" || roomDetails.postCode == "" || roomDetails.city == "" || roomDetails.region == "" || roomDetails.howMany == "" || roomDetails.desc == "" || roomDetails.type == "") {
-            $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
+        console.log(roomDetails.region);
+        if (roomDetails.city == "" || roomDetails.number == "" || roomDetails.postCode == "" || roomDetails.city == "" || roomDetails.region == "Wybierz województwo" || roomDetails.howMany == "" || roomDetails.desc == "" || roomDetails.type == "") {
+            $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
         } else if (isNaN(parseInt(roomDetails.howMany, 10))) {
-            $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Podana wartość pola 'Maksymalna ilość osób' nie jest liczbą!<strong></p></div>");
+            $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Podana wartość pola 'Maksymalna ilość osób' nie jest liczbą!<strong></p></div>");
         } else {
             Meteor.call("addRoom", roomDetails, imagesArray, function (err, res) {
                 if (!err) {
                     Router.go('main');
                 } else {
-                    $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystapił błąd, spróbuj ponownie!<strong></p></div>");
+                    $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystapił błąd, spróbuj ponownie!<strong></p></div>");
                 }
             });
 

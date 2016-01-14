@@ -1,5 +1,5 @@
 Meteor.methods({
-    addOffer: function (o, selected, prices) {
+    addOffer: function (o, selected, prices, z) {
         var r = Offers.insert({
             owner: o.owner,
             title: o.title,
@@ -7,6 +7,13 @@ Meteor.methods({
             startDate: o.startDate,
             endDate: o.endDate,
             desc: o.desc
+        });
+        Images.update({
+            _id: z
+        }, {
+            $set: {
+                owner: r
+            }
         });
         for (var i = 0; i < selected.length; i++) {
             Offerrooms.insert({

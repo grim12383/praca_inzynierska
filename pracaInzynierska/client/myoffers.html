@@ -4,6 +4,8 @@
         {{> navbar}}
 
         <div class="container">
-            {{#each myHotels}} {{> hotelItem}}{{/each}}</div>
+            {{#if validoffers}} {{#each myHotels}} {{> hotelItem}}{{/each}} {{else}}
+            <h2 class="text-center">Nie dodałeś żadnych ofert! <a href="{{pathFor 'hotelForm'}}">Dodaj</a></h2> {{/if}}
+        </div>
     </body>
 </template>

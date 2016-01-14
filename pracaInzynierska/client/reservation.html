@@ -1,96 +1,90 @@
 <template name="reservation">
     {{> navbar}}
     <div class="container text-center">
-        <div class="row errors" style="color:red" hidden></div>
-        <h3>Dokonaj rezerwacji dla {{title}}</h3>
+        <h3>Dokonaj rezerwacji dla{{#with offertitle this.owner}} {{title}}{{/with}}</h3>
+        <h4>Uzupełnij brakujące dane!</h4>
         <br />
+        <div id="resData"></div>
         <form class="text-center" id="reservationForm">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
-                    <span class="input-group-addon">Imię</span>
-                    <input type="text" class="form-control" id="name" style="height:40px" value="{{currentUser.profile.name}}" required>
+                    <span class="input-group-addon" style="width:20%;">Imię</span>
+                    <input type="text" class="form-control" id="name" style="height:40px" value="{{currentUser.profile.name}}">
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
-                    <span class="input-group-addon">Nazwisko</span>
-                    <input type="text" class="form-control" id="surname" style="height:40px" value="{{currentUser.profile.surname}}" required>
+                    <span class="input-group-addon" style="width:20%;">Nazwisko</span>
+                    <input type="text" class="form-control" id="surname" style="height:40px" value="{{currentUser.profile.surname}}">
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
-                    <span class="input-group-addon">Numer PESEL</span>
-                    <input type="text" class="form-control" id="pesel" style="height:40px" value="{{currentUser.profile.PESEL}}" required>
+                    <span class="input-group-addon" style="width:20%;">PESEL</span>
+                    <input type="text" class="form-control" id="pesel" style="height:40px" value="{{currentUser.profile.PESEL}}">
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
-                    <span class="input-group-addon">Telefon kontaktowy</span>
+                    <span class="input-group-addon" style="width:20%;">Telefon</span>
                     <input type="text" class="form-control" id="phone" style="height:40px" required>
                 </div>
             </div>
             <br />
-            <h4>Dane adresowe</h4>
+            <h3>Dane adresowe</h3>
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-3" style="margin:0px;padding:0px">
-                    <div class="input-group">
-                        <span class="input-group-addon">Ulica</span>
-                        <input type="text" class="form-control" id="street" style="height:40px" value="{{currentUser.profile.street}}" required>
-                    </div>
+                <div class="input-group col-md-6">
+                    <span class="input-group-addon" style="width:20%;">Ulica</span>
+                    <input type="text" class="input-sm form-control" id="street" style="height:40px" value="{{currentUser.profile.street}} " />
+                    <span class="input-group-addon" style="width:28%;">Numer domu/lokalu</span>
+                    <input type="text" class="input-sm form-control" id="number" style="height:40px" value="{{currentUser.profile.number}}" />
                 </div>
-                <div class="col-md-3" style="margin-right:0px;padding-right:0px">
-                    <div class="input-group"><span class="input-group-addon">Numer domu/lokalu</span>
-                        <input type="text" class="form-control" id="number" style="height:40px" value="{{currentUser.profile.number}}" required>
-                    </div>
-                </div>
-
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-2" style="margin:0px;padding:0px">
-                    <div class="input-group">
-                        <span class="input-group-addon">Kod pocztowy</span>
-                        <input type="text" class="form-control" id="postcode" style="height:40px" value="{{currentUser.profile.postCode}}" required>
-                    </div>
+                <div class="col-md-6 input-group">
+                    <span class="input-group-addon" style="width:20%;">Kod pocztowy</span>
+                    <input type="text" class="input-sm form-control" id="postcode" style="height:40px" value="{{currentUser.profile.postCode}}" />
+                    <span class="input-group-addon" style="width:28%;">Miasto</span>
+                    <input type="text" class="input-sm form-control" id="city" style="height:40px" value="{{currentUser.profile.city}}" />
                 </div>
-                <div class="col-md-4" style="margin-right:0px;padding-right:0px">
-                    <div class="input-group"><span class="input-group-addon">Miasto</span>
-                        <input type="text" class="form-control" id="city" style="height:40px" value="{{currentUser.profile.city}}" required>
-                    </div>
-                </div>
-
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <select id="rooms" class="form-control">
-                        <option>Wybierz pokój</option>
-                        {{#each rooms this._id}}
-
-                        <option value="{{_id}}">{{type}} {{howMany}}-osobowy lokalizacja: {{street}} {{postCode}} {{city}} </option> {{/each}}
-                    </select>
-                    {{#with roomprice this._id}}
-                    <h4>Cena wybranego pokoju: {{price}} PLN za dobę</h4>
+                <div class="col-md-6 text-left">
+                    <h3 class="text-center">Dane rezerwacji</h3> {{#with room this.roomid}}
+                    <h4>Pokój: {{type}} {{howMany}}-osobowy </h4>
+                    <h4>Adres: {{street}} {{number}} {{postCode}} {{city}} </h4>{{/with}}
+                    <h4 style="color:blue;">Cena za dobę: {{price}} PLN</h4> {{#if stay}} {{#with time}}
+                    <h4>Czas pobytu od:{{start}} do: {{end}}</h4> {{/with}} {{#with priceData this.price}}
+                    <h4 style="color:blue">Cena za twój pobyt: {{priceAll}} PLN</h4>{{/with}}{{else}}
                     <div class="row">
-                        <div class="col-md-5 "></div>
-                        <div class="col-md-2 ">
-                            <a class="btn btn-success" href="#" id="date"><i class="icon-calendar"></i> Wybierz datę</a>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <span class="input-group-addon" style="border-left:1px solid #ccc">Czas pobytu: od</span>
+                            <input type="text" class="input-sm form-control" id="start" style="height:40px" />
+                            <span class="input-group-addon">do</span>
+                            <input type="text" class="input-sm form-control" id="end" style="height:40px" />
                         </div>
-                    </div>{{/with}}
-                </div>
-            </div>
-            <br />
+                    </div>
 
+                    {{#with priceData2 this.price}}
+                    <h4 style="color:blue">Cena za twój pobyt: {{this}} PLN</h4>{{/with}} {{/if}}
+                </div>
+
+
+            </div>
         </form>
+        <a class="btn btn-success" href="#" id="reservation"><i class="icon-ok"></i> Dokonaj rezerwacji</a>
+
     </div>
 </template>

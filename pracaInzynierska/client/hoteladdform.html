@@ -1,25 +1,27 @@
 <template name="hotelForm">
     {{> navbar}}
     <div class="container">
+        <h3 class="text-center">Formlarz dodawania oferty</h3>
+        <br />
         <div class="errors"></div>
         <form id="addForm">
             <div class="row">
                 <div class="col-md-12 input-group">
-                    <span class="input-group-addon">Tytuł oferty</span>
+                    <span class="input-group-addon" style="width:20%;">Tytuł oferty</span>
                     <input type="text" id="title" class="input-sm form-control" style="height:40px">
                 </div>
             </div>
             <br/>
             <div class="row">
                 <div class="col-md-12 input-group">
-                    <span class="input-group-addon">Telefon kontaktowy</span>
+                    <span class="input-group-addon" style="width:20%;">Telefon kontaktowy</span>
                     <input type="text" id="phone" class="form-control" style="height:40px">
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="input-daterange input-group" id="datepicker">
-                    <span class="input-group-addon">Oferta ważna od</span>
+                    <span class="input-group-addon" style="width:20%;">Oferta ważna od</span>
                     <input type="text" class="input-sm form-control" id="start" style="height:40px" />
                     <span class="input-group-addon">do</span>
                     <input type="text" class="input-sm form-control" id="end" style="height:40px" />
@@ -30,7 +32,11 @@
                 <p>
                     <h4 class="text-center">Opis : </h4></p>
                 <textarea id="desc" class="form-control" rows="5"></textarea>
-
+                <br />
+            </div>
+            <div class="row">
+                <h4>Dodaj zdjęcie promujące Twoją ofertę</h4>
+                <input type="file" id="file">
             </div>
             <br/>
             <div class="row">
@@ -38,7 +44,7 @@
                 {{#each rooms}}
                 <div class="col-md-12" id="rooms">
                     <div class="row">
-                        <input type="checkbox" value={{_id}} /> {{type}} {{howMany}}-osobowy Lokalizacja: {{street}} {{postCode}} {{city}}
+                        <input type="checkbox" value={{_id}} /> {{type}} {{howMany}}-osobowy Lokalizacja: {{street}} {{number}} {{postCode}} {{city}}
                         <input type="text" style="height:30px" id={{_id}} placeholder="Cena">
                         <br /> </div>
                 </div>{{/each}}

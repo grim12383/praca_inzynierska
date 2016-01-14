@@ -1,7 +1,7 @@
 <template name="myreservations">
     {{>navbar}}
     <div class="container">
-        {{#each res}}
+        {{#if validres}} {{#each res}}
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -20,6 +20,7 @@
 
             </div>
         </div>
-        {{/each}}
+        {{/each}} {{else}}
+        <h2 class="text-center"> Nie masz żadnych rezerwacji</h2> {{/if}}
     </div>
 </template>

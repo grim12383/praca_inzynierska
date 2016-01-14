@@ -1,38 +1,22 @@
-<template name="register">
+<template name="editprofile">
     {{>navbar}}
     <div class="container text-center">
-        <div class="row errors" style="color:red" hidden></div>
-        <h3>Zarejestruj się na Praca Inżynierska</h3>
+        <h3>Edytuj profil</h3>
+        <div class="info"></div>
         <br />
         <form class="text-center" id="registerForm">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
                     <span class="input-group-addon" style="width:20%;">Login</span>
-                    <input type="text" class="form-control" id="login" style="height:40px" required>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 input-group">
-                    <span class="input-group-addon" style="width:20%;">Hasło</span>
-                    <input type="password" class="form-control" id="password" style="height:40px" required>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 input-group">
-                    <span class="input-group-addon" style="width:20%;">Powtórz hasło</span>
-                    <input type="password" class="form-control" id="password2" style="height:40px" required>
+                    <input type="text" class="form-control" id="login" style="height:40px" value="{{currentUser.username}}" disabled>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group"><span class="input-group-addon" style="width:20%;">E-mail</span>
-                    <input type="text" class="form-control" id="mail" style="height:40px" required>
+                    <input type="text" class="form-control" id="mail" style="height:40px" value="{{currentUser.profile.mail}}">
                 </div>
 
 
@@ -42,7 +26,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
                     <span class="input-group-addon" style="width:20%;">Imię</span>
-                    <input type="text" class="form-control" id="name" style="height:40px">
+                    <input type="text" class="form-control" id="name" style="height:40px" value="{{currentUser.profile.name}}">
                 </div>
             </div>
             <br />
@@ -50,7 +34,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
                     <span class="input-group-addon" style="width:20%;">Nazwisko</span>
-                    <input type="text" class="form-control" id="surname" style="height:40px">
+                    <input type="text" class="form-control" id="surname" style="height:40px" value="{{currentUser.profile.surname}}">
                 </div>
             </div>
             <br />
@@ -58,7 +42,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
                     <span class="input-group-addon" style="width:20%;">PESEL</span>
-                    <input type="text" class="form-control" id="pesel" style="height:40px">
+                    <input type="text" class="form-control" id="pesel" style="height:40px" value="{{currentUser.profile.PESEL}}">
                 </div>
             </div>
             <br />
@@ -67,9 +51,9 @@
                 <div class="col-md-3"></div>
                 <div class="input-group col-md-6">
                     <span class="input-group-addon" style="width:20%;">Ulica</span>
-                    <input type="text" class="input-sm form-control" id="street" style="height:40px" />
+                    <input type="text" class="input-sm form-control" id="street" style="height:40px" value="{{currentUser.profile.street}} " />
                     <span class="input-group-addon" style="width:28%;">Numer domu/lokalu</span>
-                    <input type="text" class="input-sm form-control" id="number" style="height:40px" />
+                    <input type="text" class="input-sm form-control" id="number" style="height:40px" value="{{currentUser.profile.number}}" />
                 </div>
             </div>
             <br />
@@ -77,16 +61,20 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6 input-group">
                     <span class="input-group-addon" style="width:20%;">Kod pocztowy</span>
-                    <input type="text" class="input-sm form-control" id="postcode" style="height:40px" />
+                    <input type="text" class="input-sm form-control" id="postcode" style="height:40px" value="{{currentUser.profile.postCode}}" />
                     <span class="input-group-addon" style="width:28%;">Miasto</span>
-                    <input type="text" class="input-sm form-control" id="city" style="height:40px" />
+                    <input type="text" class="input-sm form-control" id="city" style="height:40px" value="{{currentUser.profile.city}}" />
                 </div>
             </div>
             <br />
             <div class="row">
-                <div class="col-md-5"></div>
+                <div class="col-md-3"></div>
                 <div class="col-md-2">
-                    <input type="button" class="btn btn-primary" value="Zarejestruj" id="register-button">
+                    <a class="btn btn-primary" href="# " id="update"><i class="icon-ok "></i> Aktualizuj</a>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <a class="btn btn-warning" href="# " id="changepw"><i class="icon-ok "></i> Zmień hasło</a>
                 </div>
             </div>
         </form>

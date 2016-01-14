@@ -1,3 +1,4 @@
+var r;
 Template.hotelForm.events({
     'click #send': function () {
         var selected = [];
@@ -28,13 +29,13 @@ Template.hotelForm.events({
             owner: Meteor.userId()
         }
         if (offerdetails.title == "" || offerdetails.desc == "" || offerdetails.phone == "" || offerdetails.startDate == "" || offerdetails.endDate == "" || selected.length == 0) {
-            $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
+            $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
         } else {
-            Meteor.call("addOffer", offerdetails, selected, prices, function (err, res) {
+            Meteor.call("addOffer", offerdetails, selected, prices, r._id, function (err, res) {
                 if (!err) {
                     Router.go('main');
                 } else {
-                    $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas dodawania oferty, spróbuj ponownie!<strong></p></div>");
+                    $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas dodawania oferty, spróbuj ponownie!<strong></p></div>");
                 }
             });
         }
@@ -43,6 +44,12 @@ Template.hotelForm.events({
         $("input[type=text]").val("");
         $('#desc').data("wysihtml5").editor.clear();
         $("input[type=checkbox]").prop("checked", false);
+    },
+    'change #file': function (event, template) {
+        var files = event.target.files;
+        for (var g = 0, ln = files.length; g < ln; g++) {
+            r = Images.insert(files[g], function (err, fileObj) {});
+        }
     }
 });
 Template.hotelForm.helpers({
@@ -66,4 +73,5 @@ Template.hotelForm.onRendered(function () {
         toggleActive: true,
         format: "dd-mm-yyyy"
     });
+    r = undefined;
 });

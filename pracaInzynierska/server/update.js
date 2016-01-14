@@ -25,17 +25,29 @@ Meteor.methods({
         }
     },
     updateOffer: function (o, id, selected, price, rooms) {
-        Offers.update({
-            _id: id
-        }, {
-            $set: {
-                title: o.title,
-                desc: o.desc,
-                phone: o.phone,
-                startDate: o.startDate,
-                endDate: o.endDate
-            }
-        });
+        if (o.startDate != undefined) {
+            Offers.update({
+                _id: id
+            }, {
+                $set: {
+                    title: o.title,
+                    desc: o.desc,
+                    phone: o.phone,
+                    startDate: o.startDate,
+                    endDate: o.endDate
+                }
+            });
+        } else {
+            Offers.update({
+                _id: id
+            }, {
+                $set: {
+                    title: o.title,
+                    desc: o.desc,
+                    phone: o.phone,
+                }
+            });
+        }
         for (var i = 0; i < selected.length; i++) {
             Offerrooms.insert({
                 owner: id,
@@ -53,5 +65,21 @@ Meteor.methods({
             });
         }
 
+    },
+    editprofile: function (data, id) {
+        Meteor.users.update({
+            _id: id
+        }, {
+            $set: {
+                'profile.name': data.name,
+                'profile.surname': data.surname,
+                'profile.mail': data.mail,
+                'profile.PESEL': data.PESEL,
+                'profile.street': data.street,
+                'profile.number': data.number,
+                'profile.postCode': data.postCode,
+                'profile.city': data.city
+            }
+        });
     }
 });

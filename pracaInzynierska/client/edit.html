@@ -5,8 +5,30 @@
         <form class="" id="editRoom">
             <div class="row">
                 <div class="col-md-12 input-group">
-                    <span class="input-group-addon">Województwo</span>
-                    <input type="text" class="form-control" id="region" style="height:40px" value="{{region}}">
+                    <span class="input-group-addon" style="width:15%;">Województwo</span>
+                    <select id="region" class="col-md-12" style="height:40px;-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px;border-top-right-radius:5px;border-bottom-right-radius:5px;-webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;background:url(https://lh3.ggpht.com/O6M43xfWwf_sXtZk_3wv53tGmG6Y-Dtod3_gY6IyuJvEmzhYAcwuNxR1yqAJ9Zacu8vynktJ-w=w16) no-repeat right">
+                        <option>Wybierz województwo</option>
+                        <option>Dolnośląskie</option>
+                        <option>Kujawsko-Pomorskie</option>
+                        <option>Lubelskie</option>
+                        <option>Lubuskie</option>
+                        <option>Łódzkie</option>
+                        <option>Małopolskie</option>
+                        <option>Mazowieckie</option>
+                        <option>Opolskie</option>
+                        <option>Podkarpackie</option>
+                        <option>Podlaskie</option>
+                        <option>Pomorskie</option>
+                        <option>Śląskie</option>
+                        <option>Świętokrzyskie</option>
+                        <option>Warmińsko-Mazurskie</option>
+                        <option>Wielkopolskie</option>
+                        <option>Zachodniopomorskie</option>
+                    </select>
                 </div>
             </div>
             <br />
@@ -19,7 +41,7 @@
                 </div>
                 <div class=" col-md-3 " style="margin-right:0px;padding-right:0px ">
                     <div class="input-group "><span class="input-group-addon ">Numer domu/lokalu</span>
-                        <input type="text " class="form-control " id="number " style="height:40px " value="{{number}} ">
+                        <input type="text " class="form-control " id="number" style="height:40px " value="{{number}} ">
                     </div>
                 </div>
 
@@ -29,12 +51,12 @@
                 <div class="col-md-3 " style="margin:0px;padding:0px ">
                     <div class="input-group ">
                         <span class="input-group-addon ">Kod pocztowy</span>
-                        <input type="text " class="form-control " id="postcode " style="height:40px " value="{{postCode}} ">
+                        <input type="text " class="form-control " id="postcode" style="height:40px " value="{{postCode}} ">
                     </div>
                 </div>
                 <div class="col-md-9 " style="margin-right:0px;padding-right:0px ">
                     <div class="input-group "><span class="input-group-addon ">Miasto</span>
-                        <input type="text " class="form-control " id="city " style="height:40px " value="{{city}} ">
+                        <input type="text " class="form-control " id="city" style="height:40px " value="{{city}} ">
                     </div>
                 </div>
 
@@ -43,28 +65,28 @@
             <div class="row ">
                 <div class="col-md-12 input-group ">
                     <span class="input-group-addon ">Rodzaj lokum</span>
-                    <input type="text " class="form-control " id="type " style="height:40px " value="{{type}} ">
+                    <input type="text " class="form-control " id="type " styl="height:40px " value="{{type}} ">
                 </div>
             </div>
             <br />
             <div class="row ">
                 <div class="col-md-12 input-group ">
                     <span class="input-group-addon ">Maksymalna ilość osób</span>
-                    <input type="text " class="form-control " id="howMany " style="height:40px " value="{{howMany}} ">
+                    <input type="text " class="form-control " id="howMany" style="height:40px " value="{{howMany}} ">
                 </div>
             </div>
             <br />
             <div class="row ">
                 <div class="input-daterange input-group " id="datepicker ">
                     <span class="input-group-addon ">Obciązenie pokoju: od</span>
-                    <input type="text " class="input-sm form-control " id="start " style="height:40px " />
+                    <input type="text " class="input-sm form-control " id="start" style="height:40px " />
                     <span class="input-group-addon ">do</span>
-                    <input type="text " class="input-sm form-control " id="end " style="height:40px " />
+                    <input type="text " class="input-sm form-control " id="end" style="height:40px " />
                 </div>
             </div>
             <br />
             <div class="row ">
-                <a class="btn btn-warning pull-right " href="# " id="add "><i class="icon-plus "></i> Dodaj obciążenie pokoju</a>
+                <a class="btn btn-warning pull-right " href="# " id="add"><i class="icon-plus "></i> Dodaj obciążenie pokoju</a>
             </div>
             <br />
             <div class="row ">
@@ -91,9 +113,9 @@
             <div class="row ">
                 <p>
                     <h4 class="text-center ">Opis : </h4></p>
-                <textarea id="desc " class="form-control " rows="5 ">{{{desc}}}</textarea>
+                <textarea id="desc" class="form-control " rows="5 ">{{{desc}}}</textarea>
                 <br />
-                <a class="btn btn-success pull-right " href="# " id="update "><i class="icon-ok "></i> Aktualizuj</a>
+                <a class="btn btn-success pull-right " href="# " id="update"><i class="icon-ok "></i> Aktualizuj</a>
             </div>
         </form>
     </div>

@@ -1,56 +1,69 @@
 <template name="roomForm">
     {{> navbar}}
     <div class="container">
+        <h3 class="text-center">Formlarz dodawania pokoju</h3>
+        <br />
         <div class="errors"></div>
         <form class="" id="addRoom">
             <div class="row">
                 <div class="col-md-12 input-group">
-                    <span class="input-group-addon">Województwo</span>
-                    <input type="text" class="form-control" id="region" style="height:40px">
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-9" style="margin:0px;padding:0px">
-                    <div class="input-group">
-                        <span class="input-group-addon">Ulica</span>
-                        <input type="text" class="form-control" id="street" style="height:40px">
-                    </div>
-                </div>
-                <div class="col-md-3" style="margin-right:0px;padding-right:0px">
-                    <div class="input-group"><span class="input-group-addon">Numer domu/lokalu</span>
-                        <input type="text" class="form-control" id="number" style="height:40px">
-                    </div>
-                </div>
-
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-3" style="margin:0px;padding:0px">
-                    <div class="input-group">
-                        <span class="input-group-addon">Kod pocztowy</span>
-                        <input type="text" class="form-control" id="postcode" style="height:40px">
-                    </div>
-                </div>
-                <div class="col-md-9" style="margin-right:0px;padding-right:0px">
-                    <div class="input-group"><span class="input-group-addon">Miasto</span>
-                        <input type="text" class="form-control" id="city" style="height:40px">
-                    </div>
-                </div>
-
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-12 input-group">
-                    <span class="input-group-addon">Rodzaj lokum</span>
+                    <span class="input-group-addon" style="width:15%;">Rodzaj lokum</span>
                     <input type="text" class="form-control" id="type" style="height:40px">
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-12 input-group">
-                    <span class="input-group-addon">Maksymalna ilość osób</span>
+                    <span class="input-group-addon" style="width:15%;">Maksymalna ilość osób</span>
                     <input type="text" class="form-control" id="howMany" style="height:40px">
+                </div>
+            </div>
+            <br />
+            <h4 class="text-center">Dane adresowe: </h4>
+            <div class="row">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-addon" style="width:15%;">Województwo</span>
+                    <select id="region" class="col-md-12" style="height:40px;-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px;border-top-right-radius:5px;border-bottom-right-radius:5px;-webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;background:url(https://lh3.ggpht.com/O6M43xfWwf_sXtZk_3wv53tGmG6Y-Dtod3_gY6IyuJvEmzhYAcwuNxR1yqAJ9Zacu8vynktJ-w=w16) no-repeat right">
+                        <option>Wybierz województwo</option>
+                        <option>Dolnośląskie</option>
+                        <option>Kujawsko-Pomorskie</option>
+                        <option>Lubelskie</option>
+                        <option>Lubuskie</option>
+                        <option>Łódzkie</option>
+                        <option>Małopolskie</option>
+                        <option>Mazowieckie</option>
+                        <option>Opolskie</option>
+                        <option>Podkarpackie</option>
+                        <option>Podlaskie</option>
+                        <option>Pomorskie</option>
+                        <option>Śląskie</option>
+                        <option>Świętokrzyskie</option>
+                        <option>Warmińsko-Mazurskie</option>
+                        <option>Wielkopolskie</option>
+                        <option>Zachodniopomorskie</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="input-group col-md-12">
+                    <span class="input-group-addon" style="width:15%;">Ulica</span>
+                    <input type="text" class="input-sm form-control" id="street" style="height:40px" />
+                    <span class="input-group-addon" style="width:15%;">Numer domu/lokalu</span>
+                    <input type="text" class="input-sm form-control" id="number" style="height:40px" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-addon" style="width:15%;">Kod pocztowy</span>
+                    <input type="text" class="input-sm form-control" id="postcode" style="height:40px" />
+                    <span class="input-group-addon" style="width:15%;">Miasto</span>
+                    <input type="text" class="input-sm form-control" id="city" style="height:40px" />
                 </div>
             </div>
             <br />

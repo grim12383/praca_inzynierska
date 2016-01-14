@@ -17,12 +17,26 @@ Template.editOffer.events({
             };
             existedrooms.push(offerroom);
         });
+        var stDate = $("#start").val();
+        var endDateFinal = undefined;
+        var startDateFinal = undefined;
+        if (stDate != "") {
+            var startDay = stDate.substring(0, 2);
+            var startMonth = stDate.substring(3, 5);
+            var startYear = stDate.substring(6, 11);
+            startDateFinal = new Date(startYear, startMonth - 1, startDay);
+            var endDate = $("#end").val();
+            var endDay = endDate.substring(0, 2);
+            var endMonth = endDate.substring(3, 5);
+            var endYear = endDate.substring(6, 11);
+            endDateFinal = new Date(endYear, endMonth - 1, endDay);
+        }
         updateDetails = {
             title: $('#title').val(),
             desc: $('#desc').val(),
             phone: $('#phone').val(),
-            startDate: $('#start').val(),
-            endDate: $('#end').val()
+            startDate: startDateFinal,
+            endDate: endDateFinal
         }
         Meteor.call("updateOffer", updateDetails, this._id, selected, prices, existedrooms);
     },
@@ -69,14 +83,6 @@ Template.editOffer.onRendered(function () {
         var eday = data.endDate.getDate();
         var emonth = data.endDate.getMonth();
         var eyear = data.endDate.getFullYear();
-        if (day < 10)
-            $("#start").val('0' + day + '-' + month + 1 + '-' + year);
-        else if (day >= 10)
-            $("#start").val(day + '-' + month + 1 + '-' + year);
-        if (eday < 10)
-            $("#end").val('0' + eday + '-' + emonth + 1 + '-' + eyear);
-        else if (eday >= 10)
-            $("#end").val(eday + '-' + emonth + 1 + '-' + eyear);
         $('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').text(data.desc);
     });
 });

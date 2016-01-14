@@ -4,6 +4,15 @@ Template.myreservations.helpers({
             owner: Meteor.userId()
         });
     },
+    validres: function () {
+        var data = Reservations.find({
+            owner: Meteor.userId()
+        }).fetch();
+        if (data.length != 0)
+            return true;
+        else
+            return false;
+    },
     room: function (id) {
         return Rooms.findOne({
             _id: id

@@ -35,14 +35,13 @@ Template.edit.events({
             start: startDateFinal,
             end: endDateFinal
         };
-        var upddata = Rooms.update(this._id, {
+        console.log("wtf");
+        Rooms.update(this._id, {
             '$push': {
                 busy: data
             }
         });
-        if (upddata) {
-
-        }
+        console.log("wtf2");
     },
     'click #addImage': function () {
         j++;
@@ -72,14 +71,16 @@ Template.edit.events({
         }
     },
     'click #update': function () {
+        console.log("[as");
+        var d = parseInt($("#howMany").val());
         updateData = {
             id: this._id,
-            region: $("#region").val(),
+            region: $('#region option:selected').val(),
             street: $("#street").val(),
             number: $("#number").val(),
             postCode: $("#postcode").val(),
             city: $("#city").val(),
-            howMany: $("#howMany").val(),
+            howMany: d,
             desc: $("#desc").val(),
             type: $("#type").val()
         };
@@ -90,34 +91,33 @@ Template.edit.events({
         });
     }
 });
-Template.edit.onRendered(
-    function () {
-        $('#desc').wysihtml5({
-            "link": false,
-            "image": false,
+Template.edit.onRendered(function () {
+    $('#desc').wysihtml5({
+        "link": false,
+        "image": false,
+    });
+    $(".gallery").justifiedGallery({
+        rowHeight: 70,
+        lastRow: 'nojustify',
+        margins: 3
+    });
+    this.autorun(function (a) {
+        var data = Template.currentData(this.view);
+        if (!data) return;
+        for (var i = 0; i < data.busy.length; i++)
+            disabledDates.push(data.busy[i]);
+        $('.input-daterange').datepicker({
+            startDate: "today",
+            clearBtn: true,
+            language: "pl",
+            todayHighlight: true,
+            toggleActive: true,
+            beforeShowDay: disableDates,
+            format: "dd-mm-yyyy"
         });
-        $(".gallery").justifiedGallery({
-            rowHeight: 70,
-            lastRow: 'nojustify',
-            margins: 3
-        });
-        this.autorun(function (a) {
-            var data = Template.currentData(this.view);
-            if (!data) return;
-            for (var i = 0; i < data.busy.length; i++)
-                disabledDates.push(data.busy[i]);
-            $('.input-daterange').datepicker({
-                startDate: "today",
-                clearBtn: true,
-                language: "pl",
-                todayHighlight: true,
-                toggleActive: true,
-                beforeShowDay: disableDates,
-                format: "dd-mm-yyyy"
-            });
-        });
-    }
-);
+        $("#region").val(data.region);
+    });
+});
 var disableDates = function (date) {
     var currentDate = date;
     for (var i = 0; i < disabledDates.length; i++) {

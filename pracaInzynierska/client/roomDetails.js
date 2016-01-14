@@ -13,13 +13,11 @@ Template.roomDetails.helpers({
 });
 Template.roomDetails.events({
     'click #delroom': function () {
-        Meteor.call("delRoom", this._id);
-    }
-});
-Template.roomDetails.events({
-    'click #delroom': function () {
         Meteor.call('delRoom', this._id);
         Router.go('main');
+    },
+    'click #back': function () {
+        history.back();
     }
 });
 Template.roomDetails.onRendered(
