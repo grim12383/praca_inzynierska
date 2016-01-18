@@ -2,18 +2,25 @@
     {{> navbar}}
     <div class="container">
         <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ title }}</h3>
-                </div>
+            <div class="panel panel-default">
+
+
+
                 <div class="panel-body">
                     <div class="row">
+                        <div class="col-md-12">
+                            <h2>{{ title }}</h2></div>
+                    </div>
+                    <div class="row">
+                        <hr>
                         <div class="col-md-9">
-                            {{{desc}}}
+                            <h4>Telefon kontaktowy: {{phone}}</h4>
+                            <h4>Opis oferty:</h4> {{{desc}}}
                         </div>
                         <div class="col-md-3">{{#with image this._id}}{{>ProfileimageView}}{{/with}}
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="col-md-6">
 

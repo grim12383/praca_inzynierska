@@ -7839,7 +7839,7 @@
     
     .select-style {
         padding: 0;
-        margin: 0;
+        margin-right: 5px;
         border: 1px solid #ccc;
         border-radius: 5px;
         overflow: hidden;

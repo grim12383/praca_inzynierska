@@ -85,9 +85,11 @@ Template.edit.events({
             type: $("#type").val()
         };
 
-        Meteor.call("updateRoom", updateData, imagesArray);
-        Router.go('roomDetails', {
-            _id: this._id
+        Meteor.call("updateRoom", updateData, imagesArray, function (err, res) {
+            if (!err)
+                $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie zaktualizowano dane pokoju!<strong></p></div>");
+            else
+                $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas aktualizacji, spróbuj ponownie<strong></p></div>");
         });
     }
 });

@@ -1,8 +1,10 @@
 <template name="editOffer">
     {{> navbar}}
     <div class="container">
+        <h3 class="text-center">Edytuj ofertę</h3>
         <form id="addForm">
             <div class="row">
+                <div class="errors"></div>
                 <div class="col-md-12 input-group">
                     <span class="input-group-addon">Tytuł oferty</span>
                     <input type="text" id="title" class="input-sm form-control" style="height:40px" value="{{title}}">

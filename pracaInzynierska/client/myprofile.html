@@ -1,0 +1,60 @@
+<template name="myprofile">
+    {{>navbar}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 lead">Mój profil
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h1 class="only-bottom-margin">{{currentUser.username}}</h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="text-muted">Email:</span> {{currentUser.profile.mail}}
+                                        <br>
+                                        <span class="text-muted">Imię:</span> {{currentUser.profile.name}}
+                                        <br>
+                                        <span class="text-muted">Nazwisko:</span> {{currentUser.profile.surname}}
+                                        <br>
+                                        <span class="text-muted">Adres:</span> {{currentUser.profile.street}} {{currentUser.profile.number}}
+                                        <span class="text-muted"></span> {{currentUser.profile.postCode}}{{currentUser.profile.city}}
+                                        <br>
+                                        <br>
+                                        <small class="text-muted">Utworzono: {{#with created}}{{this}}{{/with}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr>
+                                <a class="btn btn-warning pull-right" href="{{pathFor 'editprofile'}}"><i class="icon-pencil"></i> Edytuj</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Moje rezerwacje</h3> {{#if myreservations}}
+        <h4>Niestety nie dokonałeś jeszcze żadnej rezerwacji</h4> {{else}}{{#each myres}}
+        <div class="panel panel-default">
+            <div class="panel-body">{{#with offer this.offer}}
+                <p>Oferta: {{title}}</p>
+                <p>Telefon kontaktowy: {{phone}}</p>{{/with}}{{#with room this.room}}
+                <p>Pokój: {{type}} {{howMany}}-osobowy</p>
+                <p>Adres: {{street}} {{number}} {{postCode}} {{city}}</p>{{/with}} {{#with date}}
+                <p>Pobyt od: {{startDate}} do: {{endDate}}</p>{{/with}}
+            </div>
+        </div>{{/each}} {{/if}}
+
+    </div>
+</template>

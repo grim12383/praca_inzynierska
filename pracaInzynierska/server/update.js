@@ -14,15 +14,16 @@ Meteor.methods({
                 desc: o.desc
             }
         });
-        for (var s = 0; s < imagesArray.length; s++) {
-            Images.update({
-                _id: imagesArray[s]
-            }, {
-                $set: {
-                    owner: o.id
-                }
-            });
-        }
+        if (imagesArray.length != 0)
+            for (var s = 0; s < imagesArray.length; s++) {
+                Images.update({
+                    _id: imagesArray[s]
+                }, {
+                    $set: {
+                        owner: o.id
+                    }
+                });
+            }
     },
     updateOffer: function (o, id, selected, price, rooms) {
         if (o.startDate != undefined) {

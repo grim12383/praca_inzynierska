@@ -77,7 +77,8 @@ Meteor.methods({
             room: data.roomid,
             start: date.start,
             end: date.end,
-            owner: owner
+            owner: owner,
+            res: data.resid
         });
         Rooms.update(data.roomid, {
             '$push': {

@@ -1,5 +1,6 @@
 accounts-base@1.2.0
 accounts-password@1.1.1
+arunoda:npm@0.2.6
 autoupdate@1.2.1
 base64@1.0.3
 binary-heap@1.0.3
@@ -65,6 +66,7 @@ mongo-livedata@1.0.8
 mrt:bootstrap-image-gallery@0.0.5
 mrt:bootstrap-wysihtml5@0.3.1
 mrt:mongodb-aggregation@0.1.71
+mrt:paypal@1.1.1
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
 ordered-dict@1.0.3

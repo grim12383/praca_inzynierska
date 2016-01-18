@@ -3,21 +3,31 @@
     <div class="container">
         {{#if validres}} {{#each res}}
         <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">W ramach oferty:{{#with off this.offer}} {{title}}{{/with}}<div class="pull-right">Od: {{#with st this.start}} {{this}}{{/with}} do {{#with end this.end}} {{this}}{{/with}}</div></h3>
-
-                </div>
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <h4>W pokoju: {{#with room this.room}}{{type}} {{howMany}}-osobowym <p>Pod adresem: {{street}} {{number}} {{postCode}} {{city}}</p>{{/with}}<p>{{#with pr this.offer this.room}}W cenie {{price}} PLN za dobę{{/with}}</p></h4>
-                    <h3>Rezerwujący:</h3>
-                    <h4>{{name}} {{surname}}</h4>
-                    <h4>{{street}} {{number}}</h4>
-                    <h4>{{postCode}} {{city}}</h4>
-                    <h4>Telefon kontaktowy: {{phone}}</h4> {{#if pesel}}
-                    <h4>Numer PESEL: {{PESEL}}</h4> {{/if}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Rezerwacja w ramach oferty:{{#with off this.offer}} {{title}}{{/with}}<div class="pull-right" style="font-size:18px;">Od: {{#with st this.start}} {{this}}{{/with}} do {{#with end this.end}} {{this}}{{/with}}</div></h3></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>W pokoju: {{#with room this.room}}{{type}} {{howMany}}-osobowym <br />Pod adresem: {{street}} {{number}} {{postCode}} {{city}}{{/with}}</h4>
+                            <h4>{{#with pr this.offer this.room}}W cenie {{price}} PLN za dobę{{/with}}</h4>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Rezerwujący:</h3>
+                            <h4>{{name}} {{surname}}</h4>
+                            <h4>{{street}} {{number}}</h4>
+                            <h4>{{postCode}} {{city}}</h4>
+                            <h4>Telefon kontaktowy: {{phone}}</h4> {{#if pesel}}
+                            <h4>Numer PESEL: {{PESEL}}</h4> {{/if}}
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
         {{/each}} {{else}}

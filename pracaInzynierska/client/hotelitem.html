@@ -1,31 +1,37 @@
 <template name="hotelItem">
     <div class="container">
         <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ title }}<div class="pull-right">Oferta ważna do: {{#with date}}{{this}}{{/with}}</div></h3>
-
-                </div>
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="col-md-12">
-                        <div class="row">
-                            {{#each rooms this._id}}
-                            <div class="col-md-9">
-                                {{#each roomdetails this.roomid}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <h4>Oferta ważna do: {{#with date}}{{this}}{{/with}}</h4></div>
+                            <h1>{{ title }}</h1>
 
-                                <div class="pannel-heading">
-                                    <h4>{{type}} {{howMany}}-osobowy</h4></div>
-                                Lokalizacja: {{street}} {{number}} {{postCode}} {{city}}{{/each}}
-                                <br /> Cena za dobę : {{price}} PLN </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{#each rooms this._id}}
 
-                            <div class="col-md-3">{{#with image this.roomid}}{{>ProfileimageView}}{{/with}}
+                        <div class="col-md-12">
+                            <div class="row">
+                                <hr>
+                                <div class="col-md-9">
+                                    {{#each roomdetails this.roomid}}
+
+                                    <h4>{{type}} {{howMany}}-osobowy</h4> Lokalizacja: {{street}} {{number}} {{postCode}} {{city}}{{/each}}
+                                    <br /> Cena za dobę : {{price}} PLN</div>
+                                <div class="col-md-3">
+                                    {{#with image this.roomid}}{{>ProfileimageView}}{{/with}}</div>
                             </div>
-                            {{/each}}</div>
+                        </div>{{/each}}
+
                     </div>
                     <div class="row">
                         <div class="col-md-12" align="center">
 
-                            <a class="btn btn-info" href="{{pathFor 'offerDetails' _id=this._id}}" id="details"><i class="icon-info-sign icon-white"></i> Szczegóły</a>
+                            <a class="btn btn-info" href="{{pathFor 'offerDetails' _id=this._id}}" id="details"><i class="icon-info-sign icon-white"></i> Szczegóły oferty</a>
 
                         </div>
                     </div>

@@ -1,4 +1,16 @@
 Router.route('main', {
+    path: '/main'
+});
+Router.route('paypal', {
+    path: '/paypal'
+});
+Router.route('changepw', {
+    path: '/changepw'
+});
+Router.route('myprofile', {
+    path: '/myprofile'
+});
+Router.route('start', {
     path: '/'
 });
 Router.route('login', {

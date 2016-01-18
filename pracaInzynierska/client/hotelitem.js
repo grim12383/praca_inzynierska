@@ -29,3 +29,8 @@ Template.hotelItem.helpers({
             return "0" + day + ".0" + month + "." + year;
     }
 });
+Template.hotelItem.events({
+    'click #details': function () {
+        Session.set("offerID", this._id);
+    }
+});

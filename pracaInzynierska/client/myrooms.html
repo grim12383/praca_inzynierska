@@ -3,25 +3,26 @@
     <div class="container">
         {{#if validrooms}} {{#each myrooms}}
         <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ type }} {{howMany}}-osobowy</h3>
+            <div class="panel panel-default">
 
-                </div>
                 <div class="panel-body">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span><h4>Dane adresowe :</h4> {{region}}</span>
-                                <br /><span style="padding-left:5%;">{{street}} {{number}}</span>
-                                <br /> <span style="padding-left:5%;">{{postCode}} {{city}} 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>{{ type }} {{howMany}}-osobowy</h3></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span><h4>Dane adresowe :</h4> {{region}}</span>
+                            <br /><span style="padding-left:5%;">{{street}} {{number}}</span>
+                            <br /> <span style="padding-left:5%;">{{postCode}} {{city}} 
 </span>
-                                <br/> {{{desc}}}
-                            </div>
-                            <div class="col-md-3">{{#with image this._id}}{{>ProfileimageView}}{{/with}}
-                            </div>
+                            <br/> {{{desc}}}
+                        </div>
+                        <div class="col-md-3">{{#with image this._id}}{{>ProfileimageView}}{{/with}}
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12" align="center">
                             <a class="btn btn-info" href="{{pathFor 'roomDetails' _id=this._id}}" id="details"><i class="icon-info-sign icon-white"></i> Szczegóły</a>
