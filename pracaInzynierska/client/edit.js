@@ -35,13 +35,11 @@ Template.edit.events({
             start: startDateFinal,
             end: endDateFinal
         };
-        console.log("wtf");
         Rooms.update(this._id, {
             '$push': {
                 busy: data
             }
         });
-        console.log("wtf2");
     },
     'click #addImage': function () {
         j++;
@@ -71,7 +69,6 @@ Template.edit.events({
         }
     },
     'click #update': function () {
-        console.log("[as");
         var d = parseInt($("#howMany").val());
         updateData = {
             id: this._id,

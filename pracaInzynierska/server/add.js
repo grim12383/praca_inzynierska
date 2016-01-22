@@ -63,7 +63,7 @@ Meteor.methods({
             });
         }
     },
-    reservation: function (data, date, owner) {
+    reservation: function (data, date, owner, pay) {
         Reservations.insert({
             name: data.name,
             surname: data.surname,
@@ -78,6 +78,7 @@ Meteor.methods({
             start: date.start,
             end: date.end,
             owner: owner,
+            payed: pay,
             res: data.resid
         });
         Rooms.update(data.roomid, {

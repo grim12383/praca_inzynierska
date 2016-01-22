@@ -16,7 +16,7 @@ Template.roomForm.events({
             type: $("#type").val(),
             owner: Meteor.userId()
         }
-        console.log(roomDetails.region);
+
         if (roomDetails.city == "" || roomDetails.number == "" || roomDetails.postCode == "" || roomDetails.city == "" || roomDetails.region == "Wybierz województwo" || roomDetails.howMany == "" || roomDetails.desc == "" || roomDetails.type == "") {
             $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
         } else if (isNaN(parseInt(roomDetails.howMany, 10))) {

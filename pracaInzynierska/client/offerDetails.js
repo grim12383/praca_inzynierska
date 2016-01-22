@@ -57,13 +57,15 @@ Template.offerDetails.helpers({
     },
     priceData: function (pr) {
         var data = Session.get("filterParams");
-        data.priceAll = data.dateDiff * parseInt(pr);
+        if (data.dateDiff != 0)
+            data.priceAll = data.dateDiff * parseInt(pr);
+
         return data;
     },
     valid: function () {
         var data = Session.get("filterParams");
         if (data != undefined)
-            if (data.dateDiff != undefined)
+            if (data.dateDiff != undefined && data.dateDiff != 0)
                 return true;
             else
                 return false;

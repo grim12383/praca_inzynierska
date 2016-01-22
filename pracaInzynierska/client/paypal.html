@@ -2,32 +2,86 @@
     {{>navbar}}
     <div clas="container">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <form action="https://secure.payu.com/paygw/UTF/NewPayment" method="POST" name="payform">
-                    Name:
-                    <input type="text" name="first_name" value="">
-                    <br/> Surname:
-                    <input type="text" name="last_name" value="">
-                    <br/> E-mail:
-                    <input type="text" name="email" value="">
-                    <br/>
-                    <input type="hidden" name="pos_id" value="12345">
-                    <input type="hidden" name="pos_auth_key" value="wq2iO3q">
-                    <input type="hidden" name="session_id" value="1234565">
-                    <input type="hidden" name="amount" value="1000">
-                    <input type="hidden" name="desc" value="Opispłatności">
-                    <input type="hidden" name="client_ip" value="123.123.123.123">
-                    <input type="hidden" name="js" value="0">
-                    <input type="hidden" name="sig" value="aded6fc758c10cc128175228fab75261">
-                    <input type="submit" value="Zapłać poprzez PayU">
-                </form>
-                <script language="JavaScript" type="text/javascript">
-                    <!--
-                    document.forms['payform'].js.value = 1;
-                    -->
-                </script>
-            </div>
+            <h2 class="text-center">Zapłać</h2>
+            <form class="text-center" id="payForm">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6" id="resData"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 input-group">
+                        <span class="input-group-addon" style="width:20%;">Imię i nazwisko</span>
+                        <input type="text" class="form-control" id="name" style="height:40px" required>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 input-group">
+                        <span class="input-group-addon" style="width:20%;">Typ karty</span>
+                        <select id="card" class="col-md-12" style="height:40px;-webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;border-top-right-radius:5px;border-bottom-right-radius:5px;-webkit-appearance: none; -moz-appearance: none; appearance: none;background:url(https://lh3.ggpht.com/O6M43xfWwf_sXtZk_3wv53tGmG6Y-Dtod3_gY6IyuJvEmzhYAcwuNxR1yqAJ9Zacu8vynktJ-w=w16) no-repeat right">
+                            <option value="undefined">Wybierz</option>
+                            <option value="visa">Visa</option>
+                            <option value="mastercard">MasterCard</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 input-group">
+                        <span class="input-group-addon" style="width:20%;">Numer karty</span>
+                        <input type="text" class="form-control" id="cardnumber" style="height:40px" required>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 input-group"><span class="input-group-addon" style="width:20%;">Rok wygaśnięcia</span>
+                        <input type="text" class="form-control" id="expyear" style="height:40px" required>
+                    </div>
+
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 input-group">
+                        <span class="input-group-addon" style="width:20%;">Miesiąc wygaśnięcia</span>
+                        <select id="expmonth" class="col-md-12" style="height:40px;-webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;border-top-right-radius:5px;border-bottom-right-radius:5px;-webkit-appearance: none; -moz-appearance: none; appearance: none;background:url(https://lh3.ggpht.com/O6M43xfWwf_sXtZk_3wv53tGmG6Y-Dtod3_gY6IyuJvEmzhYAcwuNxR1yqAJ9Zacu8vynktJ-w=w16) no-repeat right">
+                            <option>Wybierz</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 input-group">
+                        <span class="input-group-addon" style="width:20%;">CVV</span>
+                        <input type="text" class="form-control" id="cvv" style="height:40px">
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-success" value="Płacę" id="pay"> <a class="btn btn-primary pull-right" href="#" id="back"><i class="icon-arrow-left icon-white"></i> Powrót</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </template>
