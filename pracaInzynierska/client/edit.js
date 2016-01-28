@@ -81,13 +81,16 @@ Template.edit.events({
             desc: $("#desc").val(),
             type: $("#type").val()
         };
-
-        Meteor.call("updateRoom", updateData, imagesArray, function (err, res) {
-            if (!err)
-                $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie zaktualizowano dane pokoju!<strong></p></div>");
-            else
-                $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas aktualizacji, spróbuj ponownie<strong></p></div>");
-        });
+        if (updateData.region == "Wybierz województwo" || updateData.city == "" || updateData.desc == "" || updateData.howMany == "" || updateData.street == "" || updateData.number == "" || updateData.postCode == "" || updateData.type == "") {
+            $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Nie wszystkie wymagane pola zostały wypełnione!<strong></p></div>");
+        } else {
+            Meteor.call("updateRoom", updateData, imagesArray, function (err, res) {
+                if (!err)
+                    $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie zaktualizowano dane pokoju!<strong></p></div>");
+                else
+                    $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas aktualizacji, spróbuj ponownie<strong></p></div>");
+            });
+        }
     }
 });
 Template.edit.onRendered(function () {

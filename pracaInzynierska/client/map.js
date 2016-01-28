@@ -29,16 +29,16 @@ Template.map.onCreated(function () {
         for (var i = 0; i < data.length; i++) {
             var address = data[i].street + ' ' + data[i].number + ' ' + data[i].city;
             var desc = data[i].type + ' ' + data[i].howMany + '-osobowy <br /> Cena za dobę ' + offerrooms[i].price + ' PLN';
+            var title = data[i].type + ' ' + data[i].howMany + '-osobowy';
             geocoder.geocode({
                 'address': address,
-            }, function (desc, data, title) {
+            }, function (desc, title) {
                 return (function (results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
                         map.instance.setCenter(results[0].geometry.location);
                         var marker = new google.maps.Marker({
                             map: map.instance,
-                            position: results[0].geometry.location,
-                            title: title
+                            position: results[0].geometry.location
                         });
                         var infowindow = new google.maps.InfoWindow();
                         google.maps.event.addListener(marker, 'click', function () {
@@ -47,10 +47,10 @@ Template.map.onCreated(function () {
                             map.panTo(marker.getPosition());
                         });
                     } else {
-                        alert("Coś poszło nie tak");
+                        $(".errors").before("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Niestety nie mogliśmy ustawić znacznika dla pokoju " + title + "<strong></p></div>");
                     }
                 });
-            }(desc, data));
+            }(desc, title));
         }
     });
 

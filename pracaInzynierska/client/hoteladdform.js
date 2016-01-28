@@ -33,7 +33,10 @@ Template.hotelForm.events({
         } else {
             Meteor.call("addOffer", offerdetails, selected, prices, r._id, function (err, res) {
                 if (!err) {
-                    Router.go('main');
+                    $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie dodano oferte, za chwilę nastąpi przekierowanie na stronę główną!<strong></p></div>");
+                    setTimeout(function () {
+                        Router.go("main");
+                    }, 5000);
                 } else {
                     $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas dodawania oferty, spróbuj ponownie!<strong></p></div>");
                 }

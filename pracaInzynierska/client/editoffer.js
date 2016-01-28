@@ -38,12 +38,16 @@ Template.editOffer.events({
             startDate: startDateFinal,
             endDate: endDateFinal
         }
-        Meteor.call("updateOffer", updateDetails, this._id, selected, prices, existedrooms, function (err, res) {
-            if (!err)
-                $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie zaktualizowano ofertę!<strong></p></div>");
-            else
-                $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas aktualizacji, spróbuj ponownie<strong></p></div>");
-        });
+        if (updateDetails.title == "" || updateDetails.phone == "" || updateDetails.desc == "" || updateDetails.endDate == "" || updateDetails.startDate == "") {
+            $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Nie wszystkie wymagane pola zostały wypełnione!<strong></p></div>");
+        } else {
+            Meteor.call("updateOffer", updateDetails, this._id, selected, prices, existedrooms, function (err, res) {
+                if (!err)
+                    $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie zaktualizowano ofertę!<strong></p></div>");
+                else
+                    $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystąpił błąd podczas aktualizacji, spróbuj ponownie<strong></p></div>");
+            });
+        }
     },
     'click #delroom': function () {
         Meteor.call("delOfferroom", this._id);

@@ -24,7 +24,10 @@ Template.roomForm.events({
         } else {
             Meteor.call("addRoom", roomDetails, imagesArray, function (err, res) {
                 if (!err) {
-                    Router.go('main');
+                    $(".errors").html("<div class='alert alert-success'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Pomyślnie dodano pokój, za chwilę nastąpi przekierowanie na stronę główną!<strong></p></div>");
+                    setTimeout(function () {
+                        Router.go("main");
+                    }, 5000);
                 } else {
                     $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wystapił błąd, spróbuj ponownie!<strong></p></div>");
                 }
