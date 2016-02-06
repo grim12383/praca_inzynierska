@@ -5,10 +5,24 @@ Router.route('paypal', {
     path: '/paypal'
 });
 Router.route('changepw', {
-    path: '/changepw'
+    path: '/changepw',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
 });
 Router.route('myprofile', {
-    path: '/myprofile'
+    path: '/myprofile',
+    before: function () {
+        if (!Meteor.userId()) {
+            this.redirect('login');
+        } else {
+            this.next();
+        }
+    }
 });
 Router.route('start', {
     path: '/'

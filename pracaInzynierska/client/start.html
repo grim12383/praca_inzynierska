@@ -1,24 +1,23 @@
 <template name="start">
-    <div id="masthead">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <h1>Oferty hotelowe
-          <p class="lead">Tu wystawisz swoją ofertę, oraz znajdziesz pokój na wyjazd!</p>
+    <div id="masthead ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-7 ">
+                    <h1 id="offers ">Oferty hotelowe
+          <p class="lead ">Tu wystawisz swoją ofertę, oraz znajdziesz pokój na wyjazd!</p>
         </h1>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-7">
-                    <a href="{{pathFor 'main'}}">
-                        <input type="button" class="btn btn-primary" value="Strona główna">
+            <div class="row ">
+                <div class="col-md-7 ">
+                    <a href="{{pathFor 'main'}} ">
+                        <input type="button " class="btn btn-primary " value="Strona główna ">
                     </a>
-                    <a href="{{pathFor 'register'}}">
-                        <input type="button" class="btn btn-primary" value="Panel rejestracji">
+                    <a href="{{pathFor 'register'}} ">
+                        <input type="button " class="btn btn-primary " value="Panel rejestracji ">
                     </a>
-                    <a href="{{pathFor 'login'}}">
-                        <input type="button" class="btn btn-primary" value="Panel logowania">
+                    <a href="{{pathFor 'login'}} ">
+                        <input type="button " class="btn btn-primary " value="Panel logowania ">
                     </a>
                 </div>
             </div>
@@ -26,80 +25,84 @@
     </div>
 
 
-    <div class="container">
-        <div class="row">
+    <div class="container ">
+        <div class="row ">
 
-            <div class="col-md-12">
+            <div class="col-md-12 ">
 
-                <div class="panel">
-                    <div class="panel-body">
-                        <div class="row">
+                <div class="panel ">
+                    <div class="panel-body ">
+                        <div class="row ">
                             <br>
-                            <div class="col-md-10 col-sm-9">
-                                <h3>Jeżeli szukasz noclegu</h3>
-                                <div class="row">
-                                    <div class="col-xs-9">
-                                        <p>Jeżeli jesteś osobą poszukującą noclegu na weekendowy wyjazd, podróż służbową, lub po prostu potrzebujesz noclegu na wakacje, to dobrze trafiłeś, mamy to czego potrzebujesz - rezerwacja nie wymaga rejestracji na stronie -
-                                            <a href="{{pathFor 'main'}}">Wejdź jako gość!</a> Strona nie wymaga rejestracji, jednak niesie ona ze sobą korzyści - <a href="{{pathFor 'register'}}">Zarejestruj się!</a> </p>
-
+                            <div class="col-md-10 col-sm-9 ">
+                                <h2>Jeżeli szukasz noclegu</h2>
+                                <div class="row ">
+                                    <div class="col-xs-9 ">
+                                        <h4>Jeżeli jesteś osobą poszukującą noclegu na weekendowy wyjazd, podróż służbową, lub po prostu potrzebujesz noclegu na wakacje, to dobrze trafiłeś, mamy to czego potrzebujesz - rezerwacja nie wymaga rejestracji na stronie -
+                                            <a href="{{pathFor 'main'}} ">Wejdź jako gość!</a>. Za pośrednictwem naszej aplikacji znajdziesz nocleg dla siebie, zarezerwujesz go i możesz dokonać opłaty z góry! Strona nie wymaga rejestracji, jednak niesie ona ze sobą korzyści więc - <a href="{{pathFor 'register'}} ">Zarejestruj się!</a> Dzięki temu uzyskasz dostep do dokonanych przez Ciebie rezerwacji!</h4>
 
                                     </div>
-                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-3 "></div>
                                 </div>
                                 <br>
                                 <br>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row ">
                             <br>
-                            <div class="col-md-10 col-sm-9">
-                                <h3>Jesteś właścicielem hotelu, ośrodka wypoczynkowego, lub chcesz wynająć mieszkanie, dom</h3>
-                                <div class="row">
-                                    <div class="col-xs-9">
-                                        <p>Jeżeli jesteś właścicielem hotelu, ośrodka wypoczynkowego lub po prostu chcesz wynając swoje mieszkanie, lub dom - NIE ZWLEKAJ, <a href="{{pathFor 'register'}}">załóż konto</a> i zamieść swoją oferte!</p>
+                            <div class="col-md-10 col-sm-9 ">
+                                <h2>Jesteś właścicielem hotelu, ośrodka wypoczynkowego, lub chcesz wynająć mieszkanie, dom</h2>
+                                <div class="row ">
+                                    <div class="col-xs-9 ">
+                                        <h4>Jeżeli jesteś właścicielem hotelu, ośrodka wypoczynkowego lub po prostu chcesz wynając swoje mieszkanie, lub dom - NIE ZWLEKAJ, <a href="{{pathFor 'register'}} ">załóż konto</a>, dodaj swoje pokoje, zamieśc ofertę, zarządzaj wszsytkimi dostępnymi nieruchomościami w jednym miejscu! Dajemy Ci możliwość wynajęcia lokum całkowicie online!</h4>
 
 
                                     </div>
-                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-3 "></div>
                                 </div>
                                 <br>
                                 <br>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row ">
                             <br>
-                            <div class="col-md-10 col-sm-9">
-                                <h3>Ostatnio dodane oferty!</h3>
-                                <div class="row">
-                                    <div class="col-xs-9">
-                                        <ul>{{#each offers}}
-                                            <li>{{title}}</li>{{/each}}</ul>
+                            <div class="col-md-10 col-sm-9 ">
+                                <h3 class="text-center ">Ostatnio dodane oferty!</h3>
 
+                                <div class="swiper-container ">
+                                    <div class="swiper-wrapper ">
+                                        {{#each offerImages}}
+                                        <div class="swiper-slide ">
+                                            <img src="{{this.url store='images' }} " style="height:300px;display: block; margin: 0 auto; " />
+                                            <p class="text-center ">{{title}}</p>
+                                        </div>
+                                        {{/each}}
                                     </div>
-                                    <div class="col-xs-3"></div>
+                                    <br />
+                                    <br/>
+                                    <div class="swiper-pagination "></div>
                                 </div>
+                                <br/>
                                 <br>
                                 <br>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row ">
                             <br>
-
-                            <div class="col-md-10 col-sm-9">
+                            <div class="col-md-10 col-sm-9 ">
                                 <h3>Dołącz do gorna zadowolonych użytkowników!</h3>
-                                <div class="row">
-                                    <div class="col-xs-9">
+                                <div class="row ">
+                                    <div class="col-xs-9 ">
                                         Ostatnio zarejestrowani:
                                         <ul>{{#each users}}
                                             <li>{{username}}</li>{{/each}}</ul>
-
                                     </div>
-                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-3 "></div>
+
                                 </div>
-                                <br>
                                 <br>
                             </div>
                         </div>

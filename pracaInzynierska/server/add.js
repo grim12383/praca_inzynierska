@@ -8,13 +8,14 @@ Meteor.methods({
             endDate: o.endDate,
             desc: o.desc
         });
-        Images.update({
-            _id: z
-        }, {
-            $set: {
-                owner: r
-            }
-        });
+        if (z != undefined)
+            Images.update({
+                _id: z
+            }, {
+                $set: {
+                    owner: r
+                }
+            });
         for (var i = 0; i < selected.length; i++) {
             Offerrooms.insert({
                 owner: r,

@@ -28,7 +28,7 @@ Template.hotelForm.events({
             endDate: endDateFinal,
             owner: Meteor.userId()
         }
-        if (offerdetails.title == "" || offerdetails.desc == "" || offerdetails.phone == "" || offerdetails.startDate == "" || offerdetails.endDate == "" || selected.length == 0) {
+        if (offerdetails.title == "" || offerdetails.desc == "" || offerdetails.phone == "" || offerdetails.startDate == "" || offerdetails.endDate == "" || selected.length == 0 || r == undefined) {
             $(".errors").html("<div class='alert alert-error'>    <a href='#' class='close' data-dismiss='alert' style='padding-right:10px;'>&times;</a><p><strong>Wypełnij wszystkie wymagane pola!<strong></p></div>");
         } else {
             Meteor.call("addOffer", offerdetails, selected, prices, r._id, function (err, res) {
