@@ -12,7 +12,7 @@ Template.myprofile.helpers({
     myres: function () {
         return Reservations.find({
             res: Meteor.userId()
-        });
+        }).fetch().reverse();
     },
     offer: function (id) {
         return Offers.findOne({

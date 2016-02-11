@@ -60,7 +60,7 @@ Template.main.events({
 Template.main.helpers({
     getActualHotels: function () {
         dep.depend();
-        var offers = Offers.find().fetch();
+        var offers = Offers.find().fetch().reverse();
         var tmp = [];
         var actualOffers = [];
         for (var i = 0; i < offers.length; i++) {
@@ -267,9 +267,10 @@ var distinctDataRegion = function (data) {
     distData.push(data[0]);
     for (var i = 0; i < data.length; i++) {
         for (var z = 0; z < distData.length; z++) {
-            if (data[i].region == distData[z].region)
-                counter++;
+            if (data[i].region.replace(/\s+/g, '') == distData[z].region.replace(/\s+/g, ''))
+                ++counter;
         }
+
         if (counter == 0)
             distData.push(data[i]);
         else
@@ -283,8 +284,9 @@ var distinctDataCity = function (data) {
     distData.push(data[0]);
     for (var i = 0; i < data.length; i++) {
         for (var z = 0; z < distData.length; z++) {
-            if (data[i].city == distData[z].city)
-                counter++;
+            if (data[i].city.replace(/\s+/g, '') == distData[z].city.replace(/\s+/g, '')) {
+                ++counter;
+            }
         }
         if (counter == 0)
             distData.push(data[i]);

@@ -51,7 +51,7 @@ Template.paypal.events({
 });
 Template.paypal.onRendered(
     function () {
-        var data = Session.get("reservationDataWithPay");
-        $("#pay").val("Płacę " + data.price);
+        var data = Session.get("price");
+        $("#pay").val("Płacę " + data);
     }
 );

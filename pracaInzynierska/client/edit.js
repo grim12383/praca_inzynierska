@@ -10,7 +10,6 @@ Template.edit.helpers({
 });
 Template.edit.events({
     'click #delimg': function () {
-        console.log(this._id);
         Meteor.call("deleteImg", this._id);
     },
     'change #file': function (event, template) {

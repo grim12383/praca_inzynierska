@@ -23,7 +23,18 @@
                                     <h4>{{type}} {{howMany}}-osobowy</h4> Lokalizacja: {{street}} {{number}} {{postCode}} {{city}}{{/each}}
                                     <br /> Cena za dobę : {{price}} PLN</div>
                                 <div class="col-md-3">
-                                    {{#with image this.roomid}}{{>ProfileimageView}}{{/with}}</div>
+                                    <div class="swiper-container ">
+                                        <div class="swiper-wrapper ">
+                                            {{#each image this.roomid}}
+                                            <div class="swiper-slide">
+                                                <img src="{{this.url store='images' }} " style="height:300px;display: block; margin: 0 auto; " />
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                        <br />
+                                        <br/>
+                                    </div>
+                                </div>
                             </div>
                         </div>{{/each}}
 

@@ -1,37 +1,58 @@
 <template name="myreservations">
     {{>navbar}}
     <div class="container">
-        {{#if validres}} {{#each res}}
-        <div class="row">
+        <div class="col-md-6">
+            {{#if myreservations}}
+            <h2>Nie dokonałeś jeszcze żadnej rezerwacji</h2> {{else}}
+            <h2>Moje rezerwacje</h2>{{#each myres}}
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3>Rezerwacja w ramach oferty:{{#with off this.offer}} {{title}}{{/with}}<div class="pull-right" style="font-size:18px;">Od: {{#with st this.start}} {{this}}{{/with}} do {{#with end this.end}} {{this}}{{/with}}</div></h3></div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>W pokoju: {{#with room this.room}}{{type}} {{howMany}}-osobowym <br />Pod adresem: {{street}} {{number}} {{postCode}} {{city}}{{/with}}</h4>
-                            <h4>{{#with pr this.offer this.room}}W cenie {{price}} PLN za dobę{{/with}}</h4>
-                            <h4>Opłacony: {{payed}}</h4>
+                <div class="panel-body">{{#with offer this.offer}}
+                    <h4>Oferta: {{title}}</h4>
+                    <h4>Telefon kontaktowy: {{phone}}</h4>{{/with}}{{#with room this.room}}
+                    <h4>Pokój: {{type}} {{howMany}}-osobowy</h4>
+                    <h4>Adres: {{street}} {{number}} {{postCode}} {{city}}</h4>{{/with}} {{#with date}}
+                    <h4>Pobyt od: {{startDate}} do: {{endDate}}</h4>{{/with}}
+                    <h4>Opłacono: {{payed}}</h4>
+                </div>
+            </div>{{/each}} {{/if}}
+        </div>
+        <div class="col-md-6">
+            {{#if validres}}
+            <h2>Rezerwacje dla moich ofert</h2>{{#each res}}
+            <div class="row ">
+                <div class="panel panel-default ">
+                    <div class="panel-body ">
+                        <div class="row ">
+                            <div class="col-md-12 ">
+                                <h4>Rezerwacja w ramach oferty:{{#with off this.offer}} {{title}}{{/with}}</h4>
+                                <h4>Od: {{#with st this.start}} {{this}}{{/with}} do {{#with end this.end}} {{this}}{{/with}}</h4></div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3>Rezerwujący:</h3>
-                            <h4>{{name}} {{surname}}</h4>
-                            <h4>{{street}} {{number}}</h4>
-                            <h4>{{postCode}} {{city}}</h4>
-                            <h4>Telefon kontaktowy: {{phone}}</h4> {{#if pesel}}
-                            <h4>Numer PESEL: {{PESEL}}</h4> {{/if}}
+                        <hr>
+                        <div class="row ">
+                            <div class="col-md-12 ">
+                                {{#with room this.room}}
+                                <h4>W pokoju: {{type}} {{howMany}}-osobowym </h4>
+                                <h4>Pod adresem: {{street}} {{number}} {{postCode}} {{city}}</h4>{{/with}}
+                                <h4>{{#with pr this.offer this.room}}W cenie {{price}} PLN za dobę{{/with}}</h4>
+                                <h4>Opłacony: {{payed}}</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ">
+                            <div class="col-md-12 ">
+                                <h3>Rezerwujący:</h3>
+                                <h4>{{name}} {{surname}}</h4>
+                                <h4>{{street}} {{number}}</h4>
+                                <h4>{{postCode}} {{city}}</h4>
+                                <h4>Telefon kontaktowy: {{phone}}</h4> {{#if pesel}}
+                                <h4>Numer PESEL: {{PESEL}}</h4> {{/if}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/each}} {{else}}
+            <h2 class="text-center "> Nie masz żadnych rezerwacji</h2> {{/if}}
         </div>
-        {{/each}} {{else}}
-        <h2 class="text-center"> Nie masz żadnych rezerwacji</h2> {{/if}}
     </div>
 </template>

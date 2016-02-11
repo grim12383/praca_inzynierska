@@ -75,7 +75,7 @@
                     <h4>Adres: {{street}} {{number}} {{postCode}} {{city}} </h4>{{/with}}
                     <h4 style="color:blue;">Cena za dobę: {{price}} PLN</h4> {{#if stay}} {{#with time}}
                     <h4>Czas pobytu od:{{start}} do: {{end}}</h4> {{/with}} {{#with priceData this.price}}
-                    <h4 style="color:blue">Cena za twój pobyt: {{priceAll}} PLN</h4>{{/with}}{{else}}
+                    <h4 style="color:blue">Cena za twój pobyt: {{this}} PLN</h4>{{/with}}{{else}}
                     <div class="row">
                         <div class="input-daterange input-group" id="datepicker">
                             <span class="input-group-addon" style="border-left:1px solid #ccc">Czas pobytu: od</span>

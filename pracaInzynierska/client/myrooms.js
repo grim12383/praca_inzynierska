@@ -2,7 +2,7 @@ Template.myRooms.helpers({
     myrooms: function () {
         return Rooms.find({
             owner: Meteor.userId()
-        });
+        }).fetch().reverse();
     },
     image: function (id) {
         var img = Images.find({

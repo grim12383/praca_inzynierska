@@ -1,5 +1,5 @@
 Router.route('main', {
-    path: '/main'
+    path: '/'
 });
 Router.route('paypal', {
     path: '/paypal'
@@ -23,9 +23,6 @@ Router.route('myprofile', {
             this.next();
         }
     }
-});
-Router.route('start', {
-    path: '/'
 });
 Router.route('login', {
     path: '/login'

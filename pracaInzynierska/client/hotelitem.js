@@ -12,8 +12,8 @@ Template.hotelItem.helpers({
     image: function (id) {
         var img = Images.find({
             owner: id
-        }).fetch();
-        return img[0];
+        });
+        return img;
     },
     date: function () {
         var day = this.endDate.getDate();
@@ -34,3 +34,23 @@ Template.hotelItem.events({
         Session.set("offerID", this._id);
     }
 });
+Template.hotelItem.onRendered(
+    function () {
+        self = this;
+        initSwiper = function () {
+            if (self.$('.swiper-container .swiper-slide').length > 0) {
+                mySwiper = this.$('.swiper-container').swiper({
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    speed: 400,
+                    spaceBetween: 100,
+                    autoplay: 3000
+                });
+                setInterval(mySwiper.reInit, 800);
+            } else {
+                setTimeout(initSwiper, 100);
+            }
+        }
+        initSwiper();
+    }
+);
