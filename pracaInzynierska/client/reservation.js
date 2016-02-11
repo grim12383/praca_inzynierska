@@ -225,7 +225,7 @@ Template.reservation.events({
                     date: date,
                 };
                 d = Session.get("filterParams");
-                if (d.dateDiff != undefined)
+                if (d.dateDiff != undefined && d.dateDiff != 0)
                     price = d.dateDiff * parseInt(this.price);
                 Session.set("reservationDataWithPay", allData);
                 Session.set("price", price);
